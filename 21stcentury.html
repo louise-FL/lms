@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21st Century Literature – Full Course Modules</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #f0f0f0;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background: #1e1e1e;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .sidebar-logo {
+            width: 100px;
+            background: none;
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 20px 0;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin: 5px 0;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            color: #bbb;
+            text-decoration: none;
+            transition: 0.3s;
+            border-left: 4px solid transparent;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar-nav a i {
+            width: 25px;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+        .sidebar-nav li:hover a,
+        .sidebar-nav li.active a {
+            background: #2c2c2c;
+            color: white;
+            border-left-color: white;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #333;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #bbb;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            padding: 12px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #2c2c2c;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 20px;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+
+        .top-header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info span {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #333;
+            color: white;
+            overflow: hidden;
+        }
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Content Cards */
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .content-card h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .content-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .module-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .module-item {
+            background: #f9f9f9;
+            border-left: 4px solid #333;
+            padding: 15px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .module-item:hover {
+            background: #f0f0f0;
+            transform: translateX(5px);
+        }
+        .module-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        .module-arrow {
+            color: #777;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #333;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .btn-back:hover {
+            background: #555;
+        }
+        hr {
+            margin: 15px 0;
+            border-color: #eee;
+        }
+        .module-content ul, .module-content ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        .module-content li {
+            margin: 8px 0;
+        }
+        .module-content h3 {
+            margin: 20px 0 10px 0;
+            color: #2c2c2c;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Activity card styles */
+.activity-card {
+    background: #ffffff;
+    border-radius: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #eef2f8;
+    transition: all 0.2s;
+}
+.activity-card details {
+    border-radius: 24px;
+}
+.activity-card summary {
+    padding: 20px 28px;
+    border-left: 4px solid #333;
+    font-weight: 700;
+    font-size: 1.2rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #0c0c0c;
+}
+.activity-card summary::-webkit-details-marker {
+    display: none;
+}
+
+.activity-card details[open] summary {
+    border-bottom: 1px solid #e2e8f0;
+    background: #fafcff;
+}
+.activity-detail-content {
+    padding: 20px 28px 28px 28px;
+    background: #ffffff;
+    border-radius: 0 0 24px 24px;
+}
+.obj-box {
+    background: #f1f5f9;
+    padding: 12px 18px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    border-left: 5px solid #2c7da0;
+}
+.instruction-box {
+    background: #fefce8;
+    padding: 16px 20px;
+    border-radius: 20px;
+    margin: 16px 0;
+}
+.submission-area {
+    margin-top: 22px;
+    background: #f8fafc;
+    padding: 18px;
+    border-radius: 24px;
+}
+.submission-text {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #cbd5e1;
+    padding: 14px 18px;
+    font-family: monospace;
+}
+.btn-submit {
+    background: #0f172a;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    margin-top: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-submit:hover {
+    background: #2c3e66;
+}
+.submission-status {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    background: #e6f7e6;
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 30px;
+}
+.saved-preview {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 18px;
+    margin-top: 14px;
+    font-size: 0.85rem;
+}
+.clear-btn {
+    background: #64748b !important;
+}
+/* Submissions table (instructor view) */
+.submissions-table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    background: white;
+}
+.submissions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+.submissions-table th {
+    background: #f1f5f9;
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #1e293b;
+    border-bottom: 1px solid #e2e8f0;
+}
+.submissions-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #f0f2f5;
+    vertical-align: top;
+    color: #334155;
+}
+.submission-text-preview {
+    max-width: 380px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+}
+.badge-missing {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    display: inline-block;
+}
+.activity-selector {
+    background: white;
+    border-radius: 40px;
+    padding: 8px 18px;
+    border: 1px solid #cbd5e1;
+    font-weight: 500;
+    margin-right: 15px;
+}
+.btn-demo-reset {
+    background: #334155;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 500;
+}
+.btn-demo-reset:hover {
+    background: #1e293b;
+}
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+/* Modal for viewing full submission */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    overflow: auto;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 25px;
+    border-radius: 24px;
+    width: 80%;
+    max-width: 900px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    position: relative;
+}
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+.close-modal:hover {
+    color: black;
+}
+.modal-body {
+    margin-top: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.pdf-embed {
+    width: 100%;
+    height: 500px;
+    border: none;
+    margin-top: 15px;
+}
+.btn-view-pdf {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+    </style>
+</head>
+<body>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <img src="logoreal2.png" alt="Logo" class="sidebar-logo">
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li id="midtermNav" class="active"><a><i class="fas fa-book-open"></i> MODULE 2: Understanding Post-9/11 Literature</a></li>
+                <li id="activitiesNav"><a><i class="fas fa-tasks"></i> Activities</a></li>
+                <li id="submissionsNav"><a><i class="fas fa-users-viewfinder"></i> Student Submissions</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i> <span>Back to Dashboard</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="top-header">
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <h1>21st Century Literature from the Philippines and the World</h1>
+            <div class="user-info">
+                <span>Prof. Sambale</span>
+                <div class="user-avatar">
+                    <img src="potatochips.png" alt="User" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic content area -->
+        <div id="dynamicContent" class="content-card">
+            <!-- Will be filled by JS -->
+        </div>
+    </div>
+</div>
+<!-- Modal for full submission view -->
+<div id="submissionModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="modalTitle">Full Submission</h3>
+        <div id="modalBody" class="modal-body"></div>
+    </div>
+</div>
+<script>
+    // --------------------------------------------------------------
+    // MODULE DATA extracted from the provided PDF (Midterm)
+    // --------------------------------------------------------------
+    const midtermModules = [
+        {
+            id: "mid1",
+            title: "Lesson 1: The Emergence of Post-9/11 Literature",
+            content: `
+                <h2>Lesson 1: The Emergence of Post-9/11 Literature</h2>
+                <p>Post-9/11 literature emerged in the early years of the 21st century as writers across the world attempted to understand and interpret the profound impact of the September 11 attacks. These attacks, which targeted the World Trade Center in New York City and the Pentagon in Washington, D.C., resulted in the loss of thousands of lives and triggered a global sense of shock, grief, and uncertainty. The scale and visibility of the tragedy made it one of the most widely witnessed events in modern history, as millions of people watched the events unfold in real time through television and other media. In the aftermath, literature became one of the primary spaces where individuals and societies could begin to process what had happened.<br><br>In many ways, the emergence of post-9/11 literature reflects the fundamental role of storytelling in human life. When faced with events that are difficult to comprehend, people often turn to narratives as a way of making sense of their experiences. Writers, in particular, felt a responsibility to respond to the attacks, not only by documenting their effects but also by exploring their deeper meanings. As a result, a wide range of literary works began to appear, including novels, poems, essays, memoirs, and plays. These texts vary in style and perspective, but they share a common goal: to grapple with the emotional and psychological aftermath of 9/11.<br><br>One of the defining characteristics of post-9/11 literature is its immediacy. Unlike historical events that are written about long after they occur, 9/11 inspired an almost immediate literary response. Writers were not looking back at a distant past; they were writing in the midst of ongoing grief and confusion. This sense of urgency is reflected in the tone and content of many works from this period. Rather than offering clear answers or resolutions, these texts often convey uncertainty, fragmentation, and a struggle to understand what has happened. In this way, post-9/11 literature mirrors the emotional state of the societies in which it was produced.<br><br>Another important feature of this literature is its emphasis on sincerity. Prior to 9/11, much contemporary literature was influenced by postmodernism, a movement that often emphasized irony, ambiguity, and playful experimentation with language and form. While these techniques allowed writers to question established narratives and challenge traditional forms, they sometimes created a sense of detachment from reality. After 9/11, however, many writers felt that such approaches were no longer appropriate for addressing a tragedy of this magnitude. Instead, they turned toward more direct and emotionally honest forms of expression. This shift does not mean that postmodern techniques disappeared entirely, but rather that they were often combined with a renewed focus on realism and emotional depth.<br><br>The emphasis on sincerity can also be seen in the way writers portray human experiences in post-9/11 literature. Many works focus on ordinary individuals whose lives have been disrupted by the attacks. By highlighting personal stories, writers are able to convey the human cost of the tragedy in a way that statistics and news reports cannot. These narratives often explore themes of loss, grief, and resilience, showing how people attempt to rebuild their lives in the aftermath of trauma. Through these stories, readers are invited to empathize with the characters and to reflect on their own responses to the event.<br><br>In addition to its focus on emotional experience, post-9/11 literature is deeply concerned with questions of identity. The attacks prompted widespread reflection on what it means to belong to a particular nation, culture, or community. In the United States, for example, there was a surge of national unity in the immediate aftermath of the attacks, but this was often accompanied by increased suspicion and discrimination toward certain groups, particularly Muslim and Middle Eastern communities. Writers responded to these developments by exploring the complexities of identity in a rapidly changing world.<br><br>Many post-9/11 texts examine how individuals negotiate their sense of self in relation to larger social and political forces. Characters may struggle with conflicting identities, feeling caught between different cultures or expectations. Others may experience a heightened awareness of their national identity, either embracing it more strongly or questioning its meaning. By addressing these issues, post-9/11 literature highlights the ways in which global events can shape personal identities and relationships.<br><br>The theme of identity is also closely linked to the concept of belonging. After 9/11, questions about who belongs and who does not became more prominent, both within nations and on a global scale. Literature provides a space for exploring these questions in a nuanced and thoughtful way. Rather than offering simple answers, writers often present multiple perspectives, encouraging readers to consider the complexity of the issues involved. This multiplicity of viewpoints is one of the strengths of post-9/11 literature, as it reflects the diversity of experiences and responses to the attacks.<br><br>Another key aspect of the emergence of post-9/11 literature is its engagement with media and representation. The attacks were one of the first major global events to be broadcast live on a massive scale, and the images of the collapsing towers became deeply embedded in the public consciousness. Writers had to contend with the challenge of representing an event that was already so widely seen and documented. Some chose to describe the events directly, while others focused on their aftermath or used symbolic and indirect approaches. In either case, the question of how to represent such a traumatic and highly mediated event became a central concern.<br><br>Furthermore, post-9/11 literature often reflects a broader sense of global interconnectedness. Although the attacks took place in the United States, their impact was felt around the world. Writers from different countries and cultural backgrounds contributed to the growing body of literature, offering diverse perspectives on the event and its consequences. This global dimension is an important feature of post-9/11 literature, as it underscores the idea that the effects of the attacks cannot be understood in isolation. Instead, they must be viewed within the context of international relations, cultural exchanges, and shared human experiences.<br><br>Over time, the themes and approaches of post-9/11 literature have continued to evolve. In the immediate aftermath of the attacks, many works focused on the events themselves and their direct impact. However, as the years passed, writers began to explore the longer-term consequences of 9/11, including the wars in Afghanistan and Iraq, the expansion of security measures, and the ongoing debates about freedom and safety. This shift reflects the changing concerns of societies as they move from immediate response to reflection and analysis.<br><br>It is also important to note that post-9/11 literature is not limited to a single genre or form. It includes a wide range of works, from realist novels to experimental poetry, from personal memoirs to political essays. This diversity allows for a rich and multifaceted exploration of the themes associated with 9/11. Each genre offers its own strengths and possibilities, contributing to a broader understanding of the event and its impact.<br><br>In conclusion, the emergence of post-9/11 literature represents a significant development in contemporary writing. It demonstrates how literature can respond to major historical events by providing a space for reflection, dialogue, and understanding. Through its emphasis on immediacy, sincerity, identity, and global perspective, post-9/11 literature offers valuable insights into the ways in which individuals and societies cope with trauma and change. As you continue to study this body of work, consider how these themes are expressed in different texts and how they contribute to our understanding of the world after 9/11.</p>
+            `
+        },
+        {
+            id: "mid2",
+            title: "Lesson 2: Trauma and Memory in Literature",
+            content: `
+                <h2>Lesson 2: Trauma and Memory in Literature</h2>
+                <p>One of the most central and powerful themes in post-9/11 literature is trauma. Trauma refers to the deep emotional, psychological, and sometimes even physical impact of experiencing or witnessing a devastating event. In the context of the September 11 attacks, trauma is not limited to those who were directly present at the scene. It extends to families, communities, and even individuals who experienced the event through media coverage. As a result, post-9/11 literature often reflects a shared sense of shock and grief that transcends geographic boundaries.<br><br>Writers portray trauma as something that disrupts the normal flow of life. Characters in these works frequently struggle to return to their routines, as their sense of safety and stability has been shattered. Everyday activities may suddenly feel meaningless or overwhelming. This disruption is important because it highlights how trauma alters a person’s perception of time, space, and relationships. In many narratives, time no longer moves in a straight, predictable line. Instead, it becomes fragmented, with the past constantly intruding into the present.<br><br>This fragmented experience of time is often reflected in the structure of post-9/11 literary works. Authors use non-linear storytelling, shifting between past and present events, to mirror the way traumatic memories function in real life. Rather than being neatly organized, memories of trauma often appear suddenly and without warning. A character might be engaged in an ordinary activity when a sound, image, or thought triggers a vivid recollection of the traumatic event. These moments can feel as intense as the original experience, making it difficult for the individual to move forward.<br><br>In addition to shifts in time, writers also experiment with form and voice to represent trauma. Some texts include multiple narrators, fragmented sentences, or unconventional layouts that visually reflect the confusion and disorientation experienced by the characters. These stylistic choices are not merely artistic; they serve to immerse the reader in the emotional reality of trauma. By disrupting traditional storytelling methods, authors encourage readers to feel the instability and uncertainty that define the characters’ lives.<br><br>A powerful example of how trauma and memory are explored in post-9/11 literature can be found in Extremely Loud & Incredibly Close. This novel tells the story of Oskar Schell, a young boy whose father dies in the World Trade Center during the attacks. Unable to fully understand or accept his loss, Oskar embarks on a journey across New York City to find the meaning behind a mysterious key left behind by his father. This quest becomes both a literal and symbolic attempt to cope with grief.<br><br>Through Oskar’s perspective, the novel captures the complexity of trauma in a unique and deeply emotional way. As a child, Oskar processes the event differently from adults. His thoughts often shift rapidly, and he struggles to articulate his feelings. This reflects the confusion and vulnerability that many individuals, especially children, experience after a traumatic event. At the same time, his imagination allows him to create stories and scenarios that help him make sense of what has happened. In this way, the novel shows how storytelling itself can become a coping mechanism.<br><br>The structure of the novel further emphasizes the theme of fragmentation. It includes a variety of elements such as letters, photographs, blank pages, and overlapping text. These features break away from traditional narrative forms, creating a reading experience that mirrors the chaos and disorder of trauma. For example, the inclusion of photographs can be seen as an attempt to hold onto memory, preserving moments that might otherwise be lost. However, these images are often ambiguous or unexplained, suggesting that memory is incomplete and open to interpretation.<br><br>Another important aspect of trauma in post-9/11 literature is the idea of silence and the difficulty of expression. Many characters struggle to put their experiences into words. They may avoid discussing the event or find themselves unable to fully communicate their feelings. This silence can be both protective and isolating. On one hand, it shields individuals from reliving the pain; on the other hand, it prevents them from connecting with others who might understand their experiences. Writers often explore this tension, showing how the act of speaking—or writing—about trauma can be both challenging and necessary for healing.<br><br>Memory plays a crucial role in shaping how trauma is understood and represented. In post-9/11 literature, memory is rarely stable or reliable. Instead, it is fluid, selective, and sometimes contradictory. Characters may remember the same event in different ways, or their recollections may change over time. This reflects the complex nature of human memory, particularly in the aftermath of trauma. Rather than providing clear answers, memory often raises new questions, forcing individuals to confront the uncertainty of their experiences.<br><br>At the same time, memory serves as a way of preserving the past. In the context of 9/11, remembering becomes an act of honoring those who were lost. Literature plays an important role in this process by documenting personal stories and ensuring that they are not forgotten. Through narrative, writers create spaces where memories can be shared, examined, and passed on to future generations.<br><br>It is also important to recognize that memory in post-9/11 literature is not only personal but also collective. Collective memory refers to the shared understanding of an event within a community or society. After 9/11, images of the collapsing towers, news broadcasts, and public memorials became part of a collective memory that continues to shape cultural identity. Writers engage with this shared memory, exploring how it influences individual experiences and perspectives.<br><br>In many works, collective memory is portrayed as both unifying and divisive. On one hand, it brings people together through shared grief and remembrance. On the other hand, it can reinforce certain narratives while excluding others. For example, the focus on national unity may overlook the experiences of marginalized groups who faced discrimination in the aftermath of the attacks. By addressing these complexities, post-9/11 literature encourages readers to critically examine whose stories are being told and whose are being left out.<br><br>Another significant aspect of trauma and memory in this body of literature is the process of healing. While many works emphasize pain and loss, they also explore the possibility of recovery. Healing is often depicted as a gradual and ongoing process rather than a final resolution. Characters may find comfort in relationships, creative expression, or acts of remembrance. These moments of connection and understanding suggest that, even in the face of profound loss, individuals can find ways to move forward.<br><br>Importantly, literature itself can serve as a form of healing. By writing about trauma, authors create opportunities for reflection and dialogue. Readers, in turn, are invited to engage with these stories, gaining insight into experiences that may be different from their own. This exchange fosters empathy and understanding, helping to bridge the gap between individual and collective experiences.<br><br>In conclusion, trauma and memory are deeply interconnected themes in post-9/11 literature. Through fragmented narratives, experimental forms, and diverse perspectives, writers capture the complex ways in which individuals and societies respond to devastating events. Works like Extremely Loud & Incredibly Close demonstrate how literature can both reflect and shape our understanding of trauma, offering a space for remembrance, interpretation, and healing. By exploring these themes, readers gain a deeper appreciation of the enduring impact of 9/11 and the vital role of storytelling in making sense of human experience.</p>
+            `
+        },
+        {
+            id: "mid3",
+            title: "Lesson 3: Fear, Security, and the Global Landscape",
+            content: `
+                <h2>Lesson 3: Fear, Security, and the Global Landscape</h2>
+                <p>In the years following the September 11 attacks, the world underwent profound political, social, and cultural transformations. These changes were not limited to the United States; rather, they reshaped global relationships, policies, and everyday life across continents. Governments responded to the attacks by strengthening national security, introducing stricter laws, and increasing surveillance in both public and private spaces. While these measures were intended to prevent further acts of terrorism, they also created an atmosphere of fear and uncertainty that deeply influenced how individuals understood their place in the world. Post-9/11 literature captures this atmosphere, offering insight into how ordinary people experience and respond to these sweeping changes.<br><br>One of the most significant developments after 9/11 was the launch of the War on Terror, a global campaign aimed at combating terrorism. This initiative led to military interventions in countries such as Afghanistan and Iraq, which had far-reaching consequences for international relations and human lives. In literature, these conflicts are often portrayed not only as political events but also as deeply personal experiences that affect families, communities, and individuals on multiple levels. Writers explore how the idea of a “global war” creates a sense of constant tension, where danger feels both distant and immediate at the same time. This duality—of being physically safe yet psychologically unsettled—is a recurring theme in post-9/11 narratives.<br><br>Fear, as depicted in these works, is not always direct or visible. Instead, it often manifests as a quiet but persistent presence in everyday life. Characters may feel anxious while traveling, suspicious of strangers, or uncertain about the future. Public spaces such as airports, train stations, and city streets take on new meanings, becoming sites of both routine activity and potential threat. Literature reflects how these ordinary environments are transformed by the collective memory of violence. Even in moments of calm, there is an underlying awareness that the world has changed in irreversible ways.<br><br>A central concern in post-9/11 literature is the tension between security and freedom. In response to the attacks, governments introduced policies designed to enhance safety, including increased surveillance, stricter immigration controls, and expanded law enforcement powers. While many people accepted these measures as necessary, others questioned their impact on civil liberties. Writers often explore this tension by depicting characters who struggle to balance their desire for protection with their need for personal autonomy. The question that emerges is both political and philosophical: how much freedom are individuals willing to sacrifice in exchange for security?<br><br>This tension is particularly evident in narratives that focus on surveillance. Characters may feel constantly watched, whether through cameras, data collection, or government monitoring. This sense of being observed can lead to feelings of paranoia and loss of privacy. Literature uses these experiences to highlight the psychological effects of living in a highly controlled environment. It also raises important ethical questions about power, trust, and the role of the state in people’s lives. By presenting these issues through personal stories, writers make abstract political debates more tangible and relatable.<br><br>An important literary example of this atmosphere is Saturday. The novel takes place over the course of a single day in London, several years after the attacks. Although it does not directly depict the events of 9/11, it captures the lingering sense of unease that characterizes the post-9/11 world. The protagonist, a neurosurgeon named Henry Perowne, goes about his daily routine while reflecting on global events, including the threat of terrorism and the impending war in Iraq. Through his thoughts and experiences, the novel illustrates how large-scale political issues can shape individual consciousness.<br><br>What makes Saturday particularly significant is its focus on the ordinary. Rather than depicting dramatic acts of violence, the novel shows how fear becomes embedded in everyday life. Henry’s interactions with his family, his work, and even strangers are influenced by a heightened awareness of risk and vulnerability. This approach reflects a broader trend in post-9/11 literature, where the emphasis is placed not only on the events themselves but also on their long-term psychological impact. By portraying the subtle ways in which fear affects behavior and perception, the novel provides a nuanced understanding of the post-9/11 experience.<br><br>In addition to exploring fear and security, post-9/11 literature also addresses issues of prejudice and discrimination. One of the most troubling consequences of the attacks was the rise of Islamophobia, or fear and hostility toward Muslims and those perceived to be Muslim. In many countries, individuals from Middle Eastern, South Asian, and other backgrounds faced increased suspicion, discrimination, and even violence. Literature plays a crucial role in bringing these experiences to light, offering perspectives that challenge stereotypes and promote empathy.<br><br>Writers often depict characters who are unfairly judged based on their appearance, religion, or cultural background. These narratives highlight the human cost of prejudice, showing how fear can lead to misunderstanding and injustice. At the same time, they emphasize the importance of dialogue and mutual respect. By giving voice to marginalized perspectives, post-9/11 literature encourages readers to question simplistic narratives and consider the complexity of identity in a globalized world.<br><br>Another important aspect of this literature is its exploration of media and representation. After 9/11, media coverage played a significant role in shaping public perception of terrorism and security. Continuous news broadcasts, images of destruction, and political rhetoric contributed to a sense of urgency and fear. Writers often examine how these representations influence people’s understanding of reality. Characters may struggle to distinguish between actual danger and perceived threat, highlighting the powerful role of media in shaping emotions and beliefs.<br><br>Furthermore, post-9/11 literature frequently addresses the concept of “the other,” a term used to describe individuals or groups who are seen as different or outside the dominant culture. In the context of the War on Terror, this concept became particularly significant, as certain groups were often portrayed as potential threats. Literature challenges this perspective by humanizing those who are labeled as “others,” showing their experiences, struggles, and humanity. This approach not only counters stereotypes but also fosters a deeper understanding of cultural diversity.<br><br>The global nature of post-9/11 literature is another key feature of this lesson. While early works often focused on American experiences, later texts expanded to include voices from around the world. Writers from countries affected by the War on Terror offer unique perspectives on its impact, exploring themes of displacement, conflict, and resilience. These transnational narratives highlight the interconnectedness of modern society, demonstrating that the effects of 9/11 extend far beyond a single nation.<br><br>In many of these works, the idea of home becomes uncertain. Characters may feel displaced, either physically or emotionally, as they navigate a world marked by instability. This sense of dislocation reflects the broader experience of living in a global landscape shaped by conflict and change. Literature captures this feeling by depicting characters who search for belonging and meaning in a rapidly shifting environment.<br><br>Despite its focus on fear and uncertainty, post-9/11 literature also offers moments of hope and resilience. Writers explore how individuals and communities respond to adversity, finding ways to rebuild and move forward. These stories emphasize the strength of human connection, showing how relationships can provide comfort and support in difficult times. By highlighting both the challenges and the possibilities of the post-9/11 world, literature presents a balanced and multifaceted perspective.<br><br>In conclusion, post-9/11 literature provides a powerful lens through which to examine the complex relationship between fear, security, and the global landscape. Through its exploration of political change, personal experience, and cultural tension, it reveals how individuals navigate a world shaped by uncertainty. By addressing issues such as surveillance, discrimination, and global conflict, these works encourage readers to think critically about the consequences of fear and the importance of empathy. Ultimately, this body of literature reminds us that even in times of crisis, storytelling remains a vital tool for understanding and connection.</p>
+            `
+        },
+        {
+            id: "mid4",
+            title: "Lesson 4: Changing Narrative Styles and Literary Approaches",
+            content: `
+                <h2>Lesson 4: Changing Narrative Styles and Literary Approaches</h2>
+                <p>The events of the September 11 attacks prompted profound changes not only in global politics and society but also in the ways stories were told. Literature, as a reflection of human experience, had to respond to a reality that seemed almost impossible to represent. Writers found themselves questioning whether existing literary styles were still adequate for capturing the emotional weight and complexity of such a tragedy. As a result, post-9/11 literature marked a turning point in narrative techniques, tone, and purpose.<br><br>Before 9/11, much of contemporary literature was shaped by postmodernism, a movement known for its use of irony, fragmentation, metafiction, and playful experimentation with language and form. Postmodern works often challenged the idea of a single, stable truth, instead presenting reality as subjective and uncertain. Authors frequently used humor, parody, and self-awareness to question authority and traditional storytelling. While these techniques were innovative and influential, many writers began to feel that they were insufficient in the face of real-world suffering on such a massive scale.<br><br>In the aftermath of 9/11, the use of irony in particular came under scrutiny. Irony, which had long been a dominant mode in literature, seemed out of place when dealing with widespread grief and loss. For many readers and writers, ironic detachment no longer felt appropriate. Instead, there was a growing demand for sincerity and emotional honesty. Literature began to move toward a more direct engagement with reality, focusing on the human consequences of the attacks rather than abstract or playful interpretations.<br><br>This shift did not mean that experimentation disappeared entirely, but it was often reoriented toward expressing trauma rather than intellectual play. Writers became more concerned with how to represent emotional truth rather than how to challenge literary conventions. As a result, post-9/11 literature often combines traditional storytelling with carefully chosen experimental elements that reflect the fractured nature of memory and experience.<br><br>One of the most noticeable changes in post-9/11 narrative style is the emphasis on realism. Many authors sought to depict events and emotions as accurately and authentically as possible. This realism is not limited to physical details but extends to psychological and emotional experiences. Writers attempt to show how individuals process trauma, cope with loss, and rebuild their lives in the aftermath of catastrophe. The focus is often on ordinary people rather than heroic figures, highlighting the everyday impact of extraordinary events.<br><br>A key example of this transformation can be seen in Falling Man. The novel follows Keith Neudecker, a survivor of the World Trade Center attacks, as he struggles to return to normal life. Rather than presenting a dramatic or action-filled narrative, the story unfolds in a quiet, introspective manner. DeLillo focuses on small, intimate moments that reveal the lingering effects of trauma. The protagonist’s relationships, routines, and sense of identity are all disrupted, reflecting the broader disorientation experienced by many individuals after the attacks.<br><br>DeLillo’s writing style in Falling Man is notable for its simplicity and restraint. The language is often understated, avoiding overly dramatic descriptions in favor of subtle emotional cues. This approach allows readers to engage more deeply with the characters’ inner lives. The novel also incorporates fragmented scenes and non-linear storytelling, which mirror the way traumatic memories are often experienced. By combining clarity with fragmentation, DeLillo captures both the desire for understanding and the difficulty of achieving it.<br><br>Another important feature of post-9/11 literature is the use of multiple perspectives. Writers recognize that no single viewpoint can fully capture the complexity of an event like 9/11. As a result, many works present the experiences of different characters, each offering a unique perspective on the same घटना. This technique not only adds depth to the narrative but also emphasizes the diversity of human responses to trauma.<br><br>Multiple perspectives can take many forms. Some texts shift between different narrators, allowing readers to see events from various angles. Others include letters, diary entries, or other documents that provide insight into different voices. This multiplicity reflects the fragmented nature of collective memory, where different individuals remember and interpret events in different ways. It also encourages readers to consider the limitations of any single narrative, promoting a more nuanced understanding of history and experience.<br><br>In addition to multiple perspectives, post-9/11 literature often explores the boundaries between public and private experience. The attacks were both a global event and a deeply personal tragedy for those directly affected. Writers frequently examine how these two levels intersect, showing how large-scale घटनाएँ shape individual lives. This dual focus allows literature to bridge the gap between collective history and personal memory.<br><br>Another significant development in narrative style is the increased attention to time. In many post-9/11 works, time is not presented in a straightforward, linear manner. Instead, narratives may move back and forth between past and present, reflecting the ongoing impact of trauma. Characters often find themselves reliving moments from the past, unable to fully move on. This non-linear approach highlights the persistence of memory and the difficulty of achieving closure.<br><br>Language itself also becomes a central concern in post-9/11 literature. Writers grapple with the challenge of describing an event that seems to defy representation. Some express a sense of inadequacy, suggesting that words are not enough to capture the magnitude of the tragedy. Others experiment with silence, gaps, or minimalism to convey what cannot be said directly. These techniques underscore the limits of language while also demonstrating its power to evoke emotion and meaning.<br><br>At the same time, post-9/11 literature often seeks to create a sense of connection between writer and reader. By focusing on shared human experiences such as grief, fear, and hope, these works aim to foster empathy and understanding. The move toward sincerity and realism helps to establish this connection, making the narratives more accessible and emotionally resonant.<br><br>It is also important to note that the shift in narrative style is not uniform across all post-9/11 literature. Different authors respond to the event in different ways, and some continue to use experimental or postmodern techniques. However, even in these cases, there is often a noticeable change in tone, with a greater emphasis on emotional engagement and ethical responsibility. Writers become more aware of the impact of their work and the importance of representing trauma with sensitivity and respect.<br><br>Furthermore, the influence of post-9/11 narrative styles extends beyond literature. Similar shifts can be observed in film, theater, and other forms of storytelling. Across these mediums, there is a growing emphasis on realism, character-driven narratives, and the exploration of trauma. This broader cultural trend highlights the significance of 9/11 as a moment of transformation in how stories are told and understood.<br><br>In conclusion, the changes in narrative styles and literary approaches after 9/11 reflect a deeper shift in cultural values and priorities. Faced with an event that challenged existing ways of understanding the world, writers sought new methods of expression that could more accurately capture the complexity of human experience. By moving toward realism, sincerity, and multiple perspectives, post-9/11 literature offers a powerful means of exploring trauma, memory, and resilience. These works remind us that storytelling is not only a form of artistic expression but also a vital tool for making sense of the world and our place within it.</p>
+            `
+        },
+        {
+            id: "mid5",
+            title: "Lesson 5: Expanding Perspectives and Literature for Younger Readers",
+            content: `
+                <h2>Lesson 5: Expanding Perspectives and Literature for Younger Readers</h2>
+                <p>As time passed, post-9/11 literature began to move beyond its initial focus on American experiences and perspectives. While early works were often centered on the immediate impact of the September 11 attacks within the United States, later writings increasingly reflected the global consequences of the event. Writers from regions such as the Middle East, South Asia, and other parts of the world began to contribute their own narratives, offering perspectives that were often overlooked in earlier discussions. These voices provided a more complex and nuanced understanding of how 9/11 and its aftermath reshaped not only one nation, but the entire world.<br><br>The emergence of these transnational perspectives marked a significant shift in the development of post-9/11 literature. Rather than presenting the attacks as an isolated event, writers began to explore their connections to global histories, political conflicts, and cultural relationships. For instance, authors from countries directly affected by the War on Terror examined how military interventions, political instability, and displacement influenced everyday life. Through their works, readers are invited to see the broader implications of the attacks, including the ways in which they intensified existing tensions and created new challenges for communities across the globe.<br><br>This shift also highlights the importance of recognizing multiple viewpoints when studying historical events. Literature becomes a powerful tool for fostering empathy, as it allows readers to engage with experiences that may be very different from their own. By encountering diverse narratives, readers can better understand the complexities of global issues and develop a more informed and compassionate perspective. In this way, post-9/11 literature serves not only as a record of events but also as a means of encouraging cross-cultural dialogue and mutual understanding.<br><br>Another important aspect of this expansion is the way in which writers address issues of identity and representation. In the years following 9/11, many individuals from Muslim and Middle Eastern backgrounds experienced increased discrimination and stereotyping. Literature played a crucial role in challenging these narratives by presenting more authentic and humanizing portrayals of these communities. Through storytelling, writers were able to counter misconceptions and highlight the diversity within cultures that are often misunderstood or misrepresented. This emphasis on representation underscores the ability of literature to question dominant narratives and give voice to those who might otherwise be marginalized.<br><br>In addition to exploring global perspectives, post-9/11 literature has also expanded to include works specifically designed for younger audiences. Addressing such a complex and traumatic event for children presents unique challenges. Writers must find ways to communicate difficult ideas in a manner that is both truthful and sensitive to the emotional needs of young readers. As a result, children’s literature about 9/11 often focuses less on the violence of the attacks and more on themes of resilience, recovery, and hope.<br><br>One notable example is This Very Tree: A Story of 9/11, Resilience, and Regrowth, which tells the story of the Survivor Tree—a callery pear tree that was discovered in the rubble of the World Trade Center and later nursed back to health. The tree serves as a powerful symbol of endurance and renewal, illustrating how life can continue even after great loss. By using symbolism and gentle storytelling, the book helps children understand the significance of the event without exposing them to its most distressing aspects.<br><br>Similarly, other children’s books focus on themes of community and collective healing. These works often highlight how people came together in the aftermath of the attacks to support one another and rebuild their lives. By emphasizing cooperation and kindness, these stories provide young readers with a sense of reassurance and stability. They also encourage children to reflect on the importance of empathy and helping others during difficult times.<br><br>The use of visual elements is another important feature of children’s literature on this topic. Illustrations, photographs, and simple narrative structures help make complex ideas more accessible. Visual storytelling allows children to engage with the material in a way that is both informative and emotionally appropriate. It also provides opportunities for discussion, as teachers and parents can use these images to guide conversations about the event and its impact.<br><br>Beyond individual stories, children’s literature about 9/11 often serves an educational purpose. These books introduce young readers to historical events while also helping them develop critical thinking skills. By asking questions and encouraging reflection, they create a space for children to explore their thoughts and feelings about what they have learned. This process is essential for building historical awareness and emotional intelligence.<br><br>The inclusion of global perspectives in children’s literature is also becoming more common. Some books introduce young readers to the experiences of children in other parts of the world who were affected by the War on Terror. These stories broaden children’s understanding of the event and highlight the interconnectedness of different communities. By learning about the experiences of others, children can develop a greater sense of empathy and global awareness.<br><br>As post-9/11 literature continues to evolve, it remains relevant to new generations of readers. For those who did not experience the events firsthand, literature serves as an important means of understanding the past. It provides context for contemporary issues and helps readers make connections between historical events and present-day realities. This ongoing relevance demonstrates the enduring power of literature to shape our understanding of the world.<br><br>Moreover, the expansion of perspectives within post-9/11 literature reflects a broader trend in contemporary writing. There is an increasing recognition of the need for diverse voices and inclusive narratives. By embracing a wide range of experiences, literature becomes more representative of the world in which we live. This diversity not only enriches the literary landscape but also fosters greater understanding among readers.<br><br>In conclusion, the evolution of post-9/11 literature toward more inclusive and diverse perspectives represents a significant development in the field. By incorporating voices from different regions and cultures, these works provide a more comprehensive understanding of the event and its global impact. At the same time, the growth of children’s literature on this topic ensures that younger audiences can engage with these ideas in a meaningful and age-appropriate way. Together, these developments highlight the ability of literature to educate, inspire, and connect people across boundaries. As readers continue to explore these texts, they are reminded of the importance of empathy, resilience, and the shared human experience in the face of adversity.</p>
+                <p><strong>Conclusion</strong><br>Post-9/11 literature represents a powerful response to one of the most defining events of modern history. Through themes of trauma, memory, fear, and resilience, writers have created works that not only document the impact of the attacks but also explore broader questions about identity, society, and humanity. By examining these texts, readers are encouraged to reflect on how literature helps us process difficult experiences and make sense of a complex world.</p>
+            `
+        },
+    ];
+
+    // Helper: render module list (given array of modules, title of section)
+    function renderModuleList(modules, sectionTitle) {
+        let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;"><h2>MODULE 2: Understanding Post-9/11 Literature</h2></div>
+        <div style="font-size:13px;margine-bottom:5px;"><p>The events of the September 11 attacks marked a turning point not only in global politics but also in literature. Writers across the world responded to the tragedy by producing works that reflect grief, confusion, fear, and resilience. This body of writing, commonly referred to as post-9/11 literature, captures how individuals and societies attempt to understand traumatic events through storytelling. In this module, you will explore how literature became a space for reflection, memory, and dialogue after one of the most significant events of the 21st century.</p></div>`;
+        html += `<div class="module-list">`;
+        modules.forEach((mod, idx) => {
+            html += `
+                <div class="module-item" data-module-idx="${idx}" data-section="${sectionTitle === 'Midterm' ? 'mid' : 'fin'}">
+                    <span class="module-title">${mod.title}</span>
+                    <i class="fas fa-chevron-right module-arrow"></i>
+                </div>
+            `;
+        });
+        html += `</div>`;
+        return html;
+    }
+
+    function renderModuleDetail(module, sectionTitle) {
+        let backButton = `<button class="btn-back" id="backToListBtn"><i class="fas fa-arrow-left"></i> Back to ${sectionTitle} Modules</button>`;
+        return backButton + `<div class="module-content">${module.content}</div>`;
+    }
+
+    // State management
+    let currentView = 'midtermList'; // 'midtermList', 'finalList', 'midtermDetail', 'finalDetail', 'activities'
+    let currentModuleData = null; // store module object
+    let currentSection = 'mid'; // 'mid' or 'fin'
+
+    const contentDiv = document.getElementById('dynamicContent');
+
+    function render() {
+        if (currentView === 'midtermList') {
+            contentDiv.innerHTML = renderModuleList(midtermModules, 'Midterm');
+            attachModuleItemListeners('mid');
+        } 
+        else if (currentView === 'midtermDetail' && currentModuleData) {
+            contentDiv.innerHTML = renderModuleDetail(currentModuleData, 'Midterm');
+            document.getElementById('backToListBtn')?.addEventListener('click', () => {
+                currentView = 'midtermList';
+                render();
+            });
+        }
+        else if (currentView === 'activities') {
+            renderActivitiesPage();
+        }
+        else if (currentView === 'submissions') {
+        renderSubmissionsPage();
+        return;
+    }
+
+    }
+
+    function attachModuleItemListeners(section) {
+        const items = document.querySelectorAll('.module-item');
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const idx = parseInt(item.getAttribute('data-module-idx'));
+                if (section === 'mid') {
+                    currentModuleData = midtermModules[idx];
+                    currentView = 'midtermDetail';
+                }
+                render();
+            });
+        });
+    }
+
+    // Sidebar navigation
+    const midtermNav = document.getElementById('midtermNav');
+    const activitiesNav = document.getElementById('activitiesNav');
+    const submissionsNav = document.getElementById('submissionsNav');
+    
+
+    function setActiveNav(active) {
+        [midtermNav, activitiesNav, submissionsNav].forEach(nav => nav.classList.remove('active'));
+        active.classList.add('active');
+    }
+
+    midtermNav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(midtermNav);
+        currentView = 'midtermList';
+        currentModuleData = null;
+        render();
+    });
+    activitiesNav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(activitiesNav);
+        currentView = 'activities';
+        currentModuleData = null;
+        render();
+    });
+    submissionsNav.addEventListener('click', (e) => {
+    e.preventDefault();
+    setActiveNav(submissionsNav);
+    currentView = 'submissions';
+    currentModuleData = null;
+    renderSubmissionsPage();
+    });
+    // ---------- ACTIVITIES DATA (12 activities) ----------
+const activitiesList = [
+  {
+    id: 1,
+    title: "Lesson 1: The Emergence of Post-9/11 Literature",
+    objective: "Analyze how post-9/11 literature emerged as a response to the September 11 attacks, distinguishing its themes and stylistic shifts from postmodernism.",
+    instructions: "1. Think–Pair–Share: Reflect on how people respond to tragic events, then share ideas with a partner.\n2. Concept Mapping: Create a visual map of themes connected to the September 11 attacks (e.g., fear, unity, grief).\n3. Short Reading Analysis: Read a provided short excerpt and identify initial emotional responses.",
+    output: "Completed concept map + short reading notes (submitted via LMS)"
+  },
+  {
+    id: 2,
+    title: "Lesson 2: Trauma and Memory in Literature",
+    objective: "Examine how trauma and memory are represented in post-9/11 literature, focusing on narrative fragmentation and collective memory.",
+    instructions: "1. Close Reading: Analyze an excerpt from Extremely Loud & Incredibly Close focusing on emotions.\n2. Memory Timeline: Create a timeline showing how memory appears in the story.\n3. Group Discussion: Discuss how trauma affects the way people remember events.",
+    output: "Memory timeline + group discussion notes (submitted as a document)"
+  },
+  {
+    id: 3,
+    title: "Lesson 3: Fear, Security, and the Global Landscape",
+    objective: "Evaluate the tension between security and freedom in post-9/11 literature, and analyze how global politics shape narrative themes.",
+    instructions: "1. Debate: Participate in a debate on 'Security is more important than freedom.'\n2. Case Study Analysis: Examine themes in Saturday.\n3. Role Play: Act as citizens, government officials, and activists discussing surveillance.",
+    output: "Debate position paper (300 words) + role play reflection"
+  },
+  {
+    id: 4,
+    title: "Lesson 4: Changing Narrative Styles and Literary Approaches",
+    objective: "Compare postmodern and post-9/11 narrative styles, and explain why writers shifted toward realism and emotional sincerity.",
+    instructions: "1. Comparative Reading: Compare postmodern vs. post-9/11 texts.\n2. Style Identification: Analyze excerpts from Falling Man.\n3. Writing Exercise: Rewrite a text using a more realistic tone.",
+    output: "Comparative analysis chart + rewritten realistic passage"
+  },
+  {
+    id: 5,
+    title: "Lesson 5: Expanding Perspectives and Literature for Younger Readers",
+    objective: "Explore transnational perspectives and how children's literature addresses difficult historical events with resilience and hope.",
+    instructions: "1. Global Perspective Analysis: Read excerpts from different cultural viewpoints and compare themes.\n2. Children’s Book Review: Analyze This Very Tree: A Story of 9/11, Resilience, and Regrowth.\n3. Creative Task: Create a short illustrated story about resilience.",
+    output: "Book review (300 words) + illustrated story (digital or scanned)"
+  }
+];
+
+// Local storage key
+const STORAGE_KEY = "21stCentury_ActivitySubmissions";
+
+function loadSubmissions() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : {};
+}
+
+function saveSubmissions(submissions) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(submissions));
+}
+
+function updateSubmission(activityId, submissionText) {
+    let subs = loadSubmissions();
+    subs[activityId] = { text: submissionText, timestamp: new Date().toLocaleString(), submitted: true };
+    saveSubmissions(subs);
+    return subs[activityId];
+}
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+    });
+}
+
+function renderActivitiesPage() {
+    const submissionsMap = loadSubmissions();
+    let html = `<div class="activities-header">
+                    <h2><i class="fas fa-clipboard-list"></i> Course Activities</h2>
+                    <p>Complete and submit each activity below. Your submissions are saved automatically in your browser.</p>
+                </div>`;
+    
+    activitiesList.forEach(act => {
+        const saved = submissionsMap[act.id] || null;
+        const savedText = saved ? saved.text : "";
+        const statusHtml = saved ? `<div class="submission-status"><i class="fas fa-check-circle"></i> Submitted on ${saved.timestamp}</div>` 
+                                  : `<div class="submission-status" style="background:#f1f5f9; color:#475569;"><i class="fas fa-clock"></i> Not submitted yet</div>`;
+        
+        html += `
+            <div class="activity-card" data-activity-id="${act.id}">
+                <details>
+                    <summary>${act.id}. ${act.title}</summary>
+                    <div class="activity-detail-content">
+                        <div class="obj-box"><strong>Objective:</strong> ${act.objective}</div>
+                        <div class="instruction-box">
+                            <strong><i class="fas fa-list-ul"></i> Instructions:</strong><br>
+                            ${act.instructions.replace(/\n/g, '<br>')}
+                            <hr style="margin: 12px 0;">
+                            <strong>Required Output:</strong> ${act.output}
+                        </div>
+                        <div class="submission-area" id="sub-area-${act.id}">
+                            <label><i class="fas fa-upload"></i> Your submission (text, link, or description):</label>
+                            <textarea class="submission-text" id="submission-text-${act.id}" rows="4" placeholder="Paste your discussion post, link to Google Form, video URL, infographic link, reflection...">${escapeHtml(savedText)}</textarea>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                <button class="btn-submit" data-act-id="${act.id}"><i class="fas fa-paper-plane"></i> Submit Activity</button>
+                                <button class="btn-submit clear-btn" data-act-id="${act.id}" style="background:#64748b;"><i class="fas fa-trash-alt"></i> Clear Submission</button>
+                            </div>
+                            ${statusHtml}
+                            ${saved && saved.text ? `<div class="saved-preview"><strong>📎 Current preview:</strong><br>${escapeHtml(saved.text.substring(0, 200))}${saved.text.length > 200 ? '...' : ''}</div>` : ''}
+                        </div>
+                    </div>
+                </details>
+            </div>
+        `;
+    });
+    
+    html += `<div style="margin-top: 20px; text-align: center; font-size: 0.8rem; color: #5b6e8c;"><i class="fas fa-database"></i> All submissions saved locally. You can update any activity anytime.</div>`;
+    document.getElementById('dynamicContent').innerHTML = html;
+    
+    // Attach event listeners
+    activitiesList.forEach(act => {
+        const submitBtn = document.querySelector(`.btn-submit[data-act-id="${act.id}"]`);
+        if (submitBtn && !submitBtn.hasAttribute('data-listener')) {
+            submitBtn.setAttribute('data-listener', 'true');
+            submitBtn.addEventListener('click', () => {
+                const textarea = document.getElementById(`submission-text-${act.id}`);
+                const val = textarea.value.trim();
+                if (!val) { alert("Please enter your submission content."); return; }
+                updateSubmission(act.id, val);
+                renderActivitiesPage();
+            });
+        }
+        const clearBtn = document.querySelector(`.clear-btn[data-act-id="${act.id}"]`);
+        if (clearBtn && !clearBtn.hasAttribute('data-clear-listener')) {
+            clearBtn.setAttribute('data-clear-listener', 'true');
+            clearBtn.addEventListener('click', () => {
+                if (confirm(`Clear submission for "${act.title}"?`)) {
+                    let subs = loadSubmissions();
+                    delete subs[act.id];
+                    saveSubmissions(subs);
+                    renderActivitiesPage();
+                }
+            });
+        }
+    });
+}
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.querySelector('.sidebar').classList.toggle('active');
+    });
+// ---------- INSTRUCTOR VIEW: STUDENT SUBMISSIONS ----------
+const MOCK_STUDENTS = [
+    { id: "STU003", name: "Jared Sebastian" },
+    { id: "STU004", name: "Tiffany C. Legaspi" },
+    { id: "STU005", name: "Kriskin Baylon" },
+    { id: "STU006", name: "Jan E. Zamboanga" },
+    { id: "STU036", name: "Nhica Asuncion" }
+];
+
+const STUDENT_SUBMISSIONS_KEY = "Instructor_AllStudentSubmissions";
+
+function loadAllStudentSubmissions() {
+    const stored = localStorage.getItem(STUDENT_SUBMISSIONS_KEY);
+    if (stored) {
+        const parsed = JSON.parse(stored);
+        // Check if stored data contains all current student IDs
+        const allStudentsPresent = MOCK_STUDENTS.every(student => parsed[student.id]);
+        if (allStudentsPresent) return parsed;
+        // Otherwise, regenerate (student list changed)
+    }
+    
+    // Generate fresh default submissions for current students
+    const defaultSubs = {};
+    MOCK_STUDENTS.forEach(student => {
+        defaultSubs[student.id] = {};
+        
+        for (let actId = 1; actId <= 12; actId++) {
+            if (actId === 1) {
+                if (student.id === "STU003") {
+                    defaultSubs[student.id][1] = { text: `Jared's reflection: 21st century literature is shaped by climate change and digital activism...`, timestamp: "2025-04-13 14:30" };
+                } else if (student.id === "STU004") {
+                    defaultSubs[student.id][1] = { text: `Tiffany's reflection: Globalization creates hybrid identities...`, timestamp: "2025-04-13 09:15" };
+                } else if (student.id === "STU005") {
+                    defaultSubs[student.id][1] = { text: `Kriskin's reflection: Literature is no longer confined to national borders...`, timestamp: "2025-04-13 11:20" };
+                } else if (student.id === "STU006") {
+                    defaultSubs[student.id][1] = { text: `Jan's reflection: Literature is no longer confined to national borders...`, timestamp: "2025-04-13 11:20" };
+                }
+                else if (student.id === "STU036") {
+                    defaultSubs[student.id][1] = { text: `Nhica's reflection: Literature is no longer confined to national borders...`, timestamp: "2025-04-13 11:20" };
+                }
+            }
+            else if (actId === 2) {
+                if (student.id === "STU003") {
+                    defaultSubs[student.id][2] = { text: `Jared's timeline: The Arab Spring → digital resistance literature...`, timestamp: "2025-04-13 10:00" };
+                } else if (student.id === "STU004") {
+                    defaultSubs[student.id][2] = { text: `Tiffany's timeline: COVID-19 pandemic → pandemic fiction...`, timestamp: "2025-04-13 13:45" };
+                } else if (student.id === "STU005") {
+                    defaultSubs[student.id][2] = { text: `Kriskin's timeline: Decolonization movements → postcolonial literature...`, timestamp: "2025-04-13 14:15" };
+                } else if (student.id === "STU006") {
+                    defaultSubs[student.id][2] = { text: `Jan's timeline: Digital humanities → new approaches to literary analysis...`, timestamp: "2025-04-13 14:30" };
+                }
+                else if (student.id === "STU036") {
+                    defaultSubs[student.id][2] = { text: `Nhica's timeline: Climate change and digital activism...`, timestamp: "2025-04-13 11:20" };
+                }
+            }
+            else if (actId === 3) {
+                if (student.id === "STU003") {
+                    defaultSubs[student.id][3] = { text: `Jared's discussion: Postcolonial theory helps understand Achebe...`, timestamp: "2025-04-13 09:15" };
+                } else if (student.id === "STU004") {
+                    defaultSubs[student.id][3] = { text: `Tiffany's timeline: COVID-19 pandemic → pandemic fiction...`, timestamp: "2025-04-13 13:45" };
+                } else if (student.id === "STU005") {
+                    defaultSubs[student.id][3] = { text: `Kriskin's timeline: Decolonization movements → postcolonial literature...`, timestamp: "2025-04-13 14:15" };
+                } else if (student.id === "STU006") {
+                    defaultSubs[student.id][3] = { text: `Jan's timeline: Digital humanities → new approaches to literary analysis...`, timestamp: "2025-04-13 14:30" };
+                }
+                else if (student.id === "STU036") {
+                    defaultSubs[student.id][3] = { text: `Nhica's timeline: Climate change and digital activism...`, timestamp: "2025-04-13 11:20" };
+                }
+            }
+            else if (actId === 4) {
+                if (student.id === "STU003") {
+                    defaultSubs[student.id][4] = { text: `Jared's discussion: Postcolonial theory helps understand Achebe...`, timestamp: "2025-04-13 09:15" };
+                } else if (student.id === "STU004") {
+                    defaultSubs[student.id][4] = { text: `Tiffany's timeline: COVID-19 pandemic → pandemic fiction...`, timestamp: "2025-04-13 13:45" };
+                } else if (student.id === "STU005") {
+                    defaultSubs[student.id][4] = { text: `Kriskin's timeline: Decolonization movements → postcolonial literature...`, timestamp: "2025-04-13 14:15" };
+                } else if (student.id === "STU006") {
+                    defaultSubs[student.id][4] = { text: `Jan's timeline: Digital humanities → new approaches to literary analysis...`, timestamp: "2025-04-13 14:30" };
+                }
+                else if (student.id === "STU036") {
+                    defaultSubs[student.id][4] = { text: `Nhica's timeline: Climate change and digital activism...`, timestamp: "2025-04-13 11:20" };
+                }
+            }
+            else if (actId === 5) {
+                if (student.id === "STU003") {
+                    defaultSubs[student.id][5] = { text: `https://drive.google.com/file/d/1BpJVQRVw1ODRFw-8_yXRqNyYI_J7gqWG/view?usp=drive_link`, timestamp: "2025-04-13 15:20" };
+                } else if (student.id === "STU004") {
+                    defaultSubs[student.id][5] = { text: `Tiffany's timeline: COVID-19 pandemic → pandemic fiction...`, timestamp: "2025-04-13 13:45" };
+                } else if (student.id === "STU005") {
+                    defaultSubs[student.id][5] = { text: `Kriskin's timeline: Decolonization movements → postcolonial literature...`, timestamp: "2025-04-13 14:15" };
+                } else if (student.id === "STU006") {
+                    defaultSubs[student.id][5] = { text: `Jan's timeline: Digital humanities → new approaches to literary analysis...`, timestamp: "2025-04-13 14:30" };
+                }
+                else if (student.id === "STU036") {
+                    defaultSubs[student.id][5] = { text: `Nhica's timeline: Climate change and digital activism...`, timestamp: "2025-04-13 11:20" };
+                }
+            }
+        }
+        
+        // Missing submissions gaps
+        if (student.id === "STU003") delete defaultSubs[student.id][4];
+        if (student.id === "STU004") delete defaultSubs[student.id][7];
+        if (student.id === "STU005") delete defaultSubs[student.id][9];
+    });
+    
+    localStorage.setItem(STUDENT_SUBMISSIONS_KEY, JSON.stringify(defaultSubs));
+    return defaultSubs;
+}
+
+function saveAllStudentSubmissions(data) {
+    localStorage.setItem(STUDENT_SUBMISSIONS_KEY, JSON.stringify(data));
+}
+
+// Reset to default mock data (useful for demo)
+function resetToDefaultSubmissions() {
+    localStorage.removeItem(STUDENT_SUBMISSIONS_KEY);
+    loadAllStudentSubmissions(); // regenerates
+    renderSubmissionsPage(); // refresh view if active
+}
+function renderSubmissionsPage() {
+    const allSubs = loadAllStudentSubmissions();
+    const selectedActivity = sessionStorage.getItem("selectedActivityForSubmissions") || "1";
+    
+    let html = `<div><h2><i class="fas fa-users-viewfinder"></i> Student Submissions</h2>
+    <p>View and review all student answers for each activity. Submissions are stored locally in your browser.</p>
+    <div class="flex-between">
+        <div>
+            <label for="activitySelect" style="font-weight:600; margin-right:8px;">Select Activity:</label>
+            <select id="activitySelect" class="activity-selector">
+                ${activitiesList.map(act => `<option value="${act.id}" ${selectedActivity == act.id ? 'selected' : ''}>${act.id}. ${act.title.substring(0, 50)}</option>`).join('')}
+            </select>
+        </div>
+        <button id="resetDemoBtn" class="btn-demo-reset"><i class="fas fa-sync-alt"></i> Reset to Demo Submissions</button>
+    </div>`;
+    
+    const act = activitiesList.find(a => a.id == selectedActivity);
+    if (act) {
+        html += `<div class="obj-box" style="margin-top: 5px;"><strong>Activity ${act.id}: ${act.title}</strong><br>${act.objective}</div>`;
+    }
+    
+    html += `<div class="submissions-table-container">
+        <table class="submissions-table">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Student ID</th>
+                    <th>Submitted Answer / Output</th>
+                    <th>Timestamp</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>`;
+    
+    MOCK_STUDENTS.forEach(student => {
+        const submission = allSubs[student.id]?.[selectedActivity];
+        const hasSubmission = submission && submission.text && submission.text.trim() !== "";
+        const answerText = hasSubmission ? submission.text : "— No submission yet —";
+        const timestamp = hasSubmission ? submission.timestamp : "";
+        
+        html += `<tr>
+            <td><strong>${escapeHtml(student.name)}</strong></td>
+            <td>${student.id}</td>
+            <td><div class="submission-text-preview">${escapeHtml(answerText.substring(0, 150))}${answerText.length > 150 ? '...' : ''}</div></td>
+            <td style="white-space: nowrap;">${timestamp ? escapeHtml(timestamp) : '<span class="badge-missing">Not submitted</span>'}</td>
+            <td style="text-align: center;">
+                ${hasSubmission ? `<button class="btn-view-full" data-student="${student.id}" data-activity="${selectedActivity}" style="background:#3b82f6; border:none; color:white; padding:6px 14px; border-radius:30px; cursor:pointer; font-size:0.75rem;"><i class="fas fa-eye"></i> View</button>` : '—'}
+            </td>
+        </tr>`;
+    });
+    
+    html += `</tbody>
+        </table>
+    </div>
+    <p style="margin-top: 20px; font-size:0.8rem; color:#5b6e8c;"><i class="fas fa-info-circle"></i> Instructor-only view. All data is stored locally.</p>`;
+    
+    document.getElementById('dynamicContent').innerHTML = html;
+    
+    // Activity selector event
+    const activitySelect = document.getElementById('activitySelect');
+    if (activitySelect) {
+        activitySelect.addEventListener('change', (e) => {
+            sessionStorage.setItem("selectedActivityForSubmissions", e.target.value);
+            renderSubmissionsPage();
+        });
+    }
+    
+    // Reset button event
+    const resetBtn = document.getElementById('resetDemoBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if (confirm("Reset all student submissions to default demo data? This will overwrite any custom changes.")) {
+                resetToDefaultSubmissions();
+            }
+        });
+    }
+    
+    // Attach "View Full Output" button listeners
+    document.querySelectorAll('.btn-view-full').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const studentId = btn.getAttribute('data-student');
+            const activityId = btn.getAttribute('data-activity');
+            const allSubsData = loadAllStudentSubmissions();
+            const submissionObj = allSubsData[studentId]?.[activityId];
+            if (submissionObj && submissionObj.text) {
+                const studentName = MOCK_STUDENTS.find(s => s.id === studentId)?.name || studentId;
+                const activityTitle = activitiesList.find(a => a.id == activityId)?.title || `Activity ${activityId}`;
+                showFullSubmissionModal(studentName, activityTitle, submissionObj.text, submissionObj.timestamp);
+            } else {
+                alert("No submission content found.");
+            }
+        });
+    });
+}
+
+// Helper to show modal with full submission
+function showFullSubmissionModal(studentName, activityTitle, submissionText, timestamp) {
+    const modal = document.getElementById('submissionModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    
+    modalTitle.innerHTML = `${escapeHtml(studentName)} - ${escapeHtml(activityTitle)}`;
+    
+    // Check if submission text looks like a PDF link (ends with .pdf or contains .pdf? webrtc)
+    const isPdfLink = submissionText.toLowerCase().includes('.pdf') && (submissionText.startsWith('http') || submissionText.startsWith('https'));
+    
+    let contentHtml = `<p><strong>Submitted on:</strong> ${escapeHtml(timestamp)}</p>`;
+    contentHtml += `<div style="background:#f8fafc; padding:15px; border-radius:16px; margin-top:10px;">`;
+    
+    if (isPdfLink) {
+        contentHtml += `<p><strong>PDF Submission:</strong></p>`;
+        contentHtml += `<a href="${escapeHtml(submissionText)}" target="_blank" class="btn-view-pdf"><i class="fas fa-file-pdf"></i> Open PDF in new tab</a>`;
+        contentHtml += `<iframe class="pdf-embed" src="${escapeHtml(submissionText)}" title="PDF preview"></iframe>`;
+        contentHtml += `<p class="instruction-box" style="margin-top:12px;"><i class="fas fa-info-circle"></i> If PDF does not load, click the button above to open directly.</p>`;
+    } else {
+        contentHtml += `<p><strong>Full submission text:</strong></p>`;
+        contentHtml += `<div style="white-space:pre-wrap; font-family:monospace; background:white; padding:12px; border-radius:12px; border:1px solid #e2e8f0;">${escapeHtml(submissionText)}</div>`;
+    }
+    contentHtml += `</div>`;
+    
+    modalBody.innerHTML = contentHtml;
+    modal.style.display = "block";
+    
+    // Close modal when clicking X or outside
+    const closeSpan = document.querySelector('.close-modal');
+    closeSpan.onclick = () => { modal.style.display = "none"; };
+    window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
+}
+
+// Helper to escape HTML
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+    });
+}
+    // Initial render
+    render();
+</script>
+</body>
+</html>

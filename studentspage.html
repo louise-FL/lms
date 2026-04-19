@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management - LMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #f0f0f0;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background: #1e1e1e;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .sidebar-logo {
+            width: 100px;
+            background: none;
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 20px 0;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin: 5px 0;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            padding: 12px 25px;
+            color: #bbb;
+            text-decoration: none;
+            transition: 0.3s;
+            border-left: 4px solid transparent;
+            font-size: 15px;
+        }
+
+        .sidebar-nav a i {
+            width: 25px;
+            font-size: 18px;
+            margin-right: 15px;
+        }
+
+        .sidebar-nav li:hover a,
+        .sidebar-nav li.active a {
+            background: #2c2c2c;
+            color: white;
+            border-left-color: white;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #333;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #bbb;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            padding: 12px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #2c2c2c;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 20px;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+
+        .top-header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info span {
+            color: #555;
+            font-weight: 500;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Student Table Styles */
+        .students-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: #fafafa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-header h3 {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 5px 12px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+        }
+
+        .search-box i {
+            color: #888;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 8px;
+            width: 200px;
+            outline: none;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background: white;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .students-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .students-table th,
+        .students-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .students-table th {
+            background: #f5f5f5;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .students-table tr:hover {
+            background: #fafafa;
+        }
+
+        /* Photo column */
+        .students-table td:first-child,
+        .students-table th:first-child {
+            width: 60px;
+            text-align: center;
+        }
+
+        .student-photo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: #e0e0e0;
+            color: #2c2c2c;
+        }
+
+        .status-inactive {
+            background: #ddd;
+            color: #888;
+        }
+
+        .btn-view {
+            background: #333;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-view:hover {
+            background: #555;
+        }
+
+        .pagination {
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .pagination button {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            margin: 0 3px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .pagination button:hover {
+            background: #e0e0e0;
+        }
+
+        .pagination button.active {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .students-table th, .students-table td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+            .search-box input {
+                width: 150px;
+            }
+            .students-table td:first-child,
+            .students-table th:first-child {
+                width: 50px;
+            }
+            .student-photo {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="logoreal2.png" alt="Logo" class="sidebar-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                    <li class="active"><a href="students.html"><i class="fas fa-users"></i> Students</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="alert('Logout demo');">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="top-header">
+                <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+                <h1>Student Management</h1>
+                <div class="user-info">
+                    <span>Prof Sambale</span>
+                    <div class="user-avatar">
+                        <img src="potatochips.png" alt="User">
+                    </div>
+                </div>
+            </header>
+
+            <div class="students-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-user-graduate"></i> Enrolled Students</h3>
+                    <div class="search-bar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Search by name, email, or course...">
+                        </div>
+                        <select id="statusFilter" class="filter-select">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="students-table" id="studentTable">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Enrolled Courses</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+                            <!-- Dynamic rows will appear here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="paginationControls">
+                    <!-- Dynamic pagination buttons -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ---------- STUDENT DATA (from original table) ----------
+        const studentsData = [
+            { photo: "makoy.jpg", studentId: "STU001", name: "Mark Lee Cabantog", email: "marklovespyo@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "jaehyun.jpg", studentId: "STU002", name: "Jaehyun Deloria", email: "jyn.dlr@student.com", courses: "21st Century Literature, Social Science", status: "active", statusText: "Active" },
+            { photo: "jared.jpg", studentId: "STU003", name: "Jared Sebastian", email: "crushkosinyamage@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "tiffany.jpg", studentId: "STU004", name: "Tiffany C. Legaspi", email: "mommyninyamage@student.com", courses: "Social Science", status: "active", statusText: "Active" },
+            { photo: "kreskin.jpg", studentId: "STU005", name: "Kriskin Baylon", email: "hawakanmoangB@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "jan.jpg", studentId: "STU006", name: "Jan E. Zamboanga", email: "wagJanmaykilitiakoJan@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "zhongli.jpg", studentId: "STU007", name: "Zhongli Batumbakal", email: "osmanthuswinetastethesame@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "al.jpg", studentId: "STU008", name: "Alhaitham Abdul Lhima", email: "ilykaveh@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "anax.jpg", studentId: "STU009", name: "Anaxagoras Clazomenae", email: "ilovedromas@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "sana.jpg", studentId: "STU010", name: "Sana M. Sambale", email: "shyshyshycheeseukimbap@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "kyo.jpg", studentId: "STU011", name: "Keonho C. Cortis", email: "gogogo@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "juhoon.jpg", studentId: "STU012", name: "Juhoon Kim", email: "lowcortisol@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "jason.jpg", studentId: "STU013", name: "Jisun Titum", email: "bustunsiltiks@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "lebron.jpg", studentId: "STU014", name: "Lebron James Manatac", email: "youaremysunshine@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "kiryu.jpg", studentId: "STU015", name: "Kazuma Kiryu", email: "bakamitai@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "goro.jpg", studentId: "STU016", name: "Goro Majima", email: "24hourcinderalla@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "nanami.jpg", studentId: "STU017", name: "Nanami Kento", email: "thisboyisonfire@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "dante.jpg", studentId: "STU018", name: "Dante Sparda", email: "godmayrejoice@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "bayot.jpg", studentId: "STU019", name: "Bayo T. Netta", email: "legdayallday@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "leon.jpg", studentId: "STU020", name: "Leon Kennedy", email: "residentsgirldad@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "seph.jpg", studentId: "STU021", name: "Sephiroth Jenova", email: "7finaldestination@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "mav.jpg", studentId: "STU022", name: "Mavuika Haborym", email: "therealpyroarchon@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "alice.jpg", studentId: "STU023", name: "Alice Hexenzirkel", email: "aliceinthewonderland@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "nic.jpg", studentId: "STU024", name: "Nicole Gaon", email: "yapper@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "rick.jpg", studentId: "STU025", name: "Ricky Mambo Astley", email: "nevergonnagiveyouup@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "girly.jpg", studentId: "STU026", name: "Girly Jackstone", email: "goodnessgraciousikawyungnagshoplift@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "peter.jpg", studentId: "STU027", name: "Peter Jackstone", email: "pahinginamanakongliver@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "mark.jpg", studentId: "STU028", name: "Mark Jackstone", email: "whoopskirishoplifter@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "panying.jpg", studentId: "STU029", name: "Panying Jackstone", email: "thatsmyyobmot@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "piona.jpg", studentId: "STU030", name: "Piona Cabantog", email: "tottiemarie@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "geyl.png", studentId: "STU031", name: "Gail Rugeria", email: "womaninmenfield@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "ada.jpg", studentId: "STU032", name: "Ada Wong", email: "residentsbaddie@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "luwis.jpg", studentId: "STU033", name: "Louise Legaspi", email: "nyamage@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "mina.jpg", studentId: "STU034", name: "Myoui Mina", email: "wifeyninyamage@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "katrina.jpg", studentId: "STU035", name: "Katrina Trinidad", email: "iloveharrystyles@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+            { photo: "nhica.jpg", studentId: "STU036", name: "Nhica Asuncion", email: "yutaswife@student.com", courses: "21st Century Literature", status: "active", statusText: "Active" },
+
+        ];
+
+        // Pagination settings
+        let currentPage = 1;
+        const rowsPerPage = 6;
+        let filteredStudents = [];
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const tbody = document.getElementById('studentTableBody');
+        const paginationDiv = document.getElementById('paginationControls');
+
+        // Helper: filter students based on search and status
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+
+            filteredStudents = studentsData.filter(student => {
+                // Search in name, email, courses
+                const matchesSearch = student.name.toLowerCase().includes(searchTerm) ||
+                                      student.email.toLowerCase().includes(searchTerm) ||
+                                      student.courses.toLowerCase().includes(searchTerm);
+                // Status filter
+                const matchesStatus = statusValue === 'all' || student.status === statusValue;
+                return matchesSearch && matchesStatus;
+            });
+            currentPage = 1; // reset to first page after filtering
+        }
+
+        // Render current page of filtered students
+        function renderTable() {
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageStudents = filteredStudents.slice(start, end);
+
+            if (pageStudents.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;">No students found</td></tr>`;
+                return;
+            }
+
+            let html = '';
+            for (let student of pageStudents) {
+                const statusClass = student.status === 'active' ? 'status-active' : 'status-inactive';
+                html += `
+                    <tr>
+                        <td><img src="${student.photo}" alt="${student.name}" class="student-photo" onerror="this.src='https://via.placeholder.com/40'"></td>
+                        <td>${student.studentId}</td>
+                        <td>${student.name}</td>
+                        <td>${student.email}</td>
+                        <td>${student.courses}</td>
+                        <td><span class="status-badge ${statusClass}">${student.statusText}</span></td>
+                        <td><button class="btn-view" onclick="alert('View details for ${student.name}')">View</button></td>
+                    </tr>
+                `;
+            }
+            tbody.innerHTML = html;
+        }
+
+        // Generate pagination buttons
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredStudents.length / rowsPerPage);
+            if (totalPages <= 1) {
+                paginationDiv.innerHTML = '';
+                return;
+            }
+
+            let buttonsHtml = '';
+            // Previous button
+            buttonsHtml += `<button class="page-btn" data-page="prev" ${currentPage === 1 ? 'disabled' : ''}>&lsaquo; Prev</button>`;
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const activeClass = i === currentPage ? 'active' : '';
+                buttonsHtml += `<button class="page-btn ${activeClass}" data-page="${i}">${i}</button>`;
+            }
+
+            // Next button
+            buttonsHtml += `<button class="page-btn" data-page="next" ${currentPage === totalPages ? 'disabled' : ''}>Next &rsaquo;</button>`;
+
+            paginationDiv.innerHTML = buttonsHtml;
+
+            // Attach event listeners to pagination buttons
+            document.querySelectorAll('.page-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (btn.disabled) return;
+                    const page = btn.getAttribute('data-page');
+                    if (page === 'prev') {
+                        if (currentPage > 1) currentPage--;
+                    } else if (page === 'next') {
+                        if (currentPage < totalPages) currentPage++;
+                    } else {
+                        currentPage = parseInt(page);
+                    }
+                    renderTable();
+                    updatePagination();
+                });
+            });
+        }
+
+        // Refresh everything (filter, render, pagination)
+        function refreshDisplay() {
+            applyFilters();
+            renderTable();
+            updatePagination();
+        }
+
+        // Event listeners for search and filter
+        searchInput.addEventListener('input', () => refreshDisplay());
+        statusFilter.addEventListener('change', () => refreshDisplay());
+
+        // Sidebar toggle for mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Initial load
+        refreshDisplay();
+    </script>
+</body>
+</html>
