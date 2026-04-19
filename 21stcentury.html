@@ -508,7 +508,7 @@
         <nav class="sidebar-nav">
             <ul>
                 <li id="midtermNav" class="active"><a><i class="fas fa-book-open"></i> MODULE 2: Understanding Post-9/11 Literature</a></li>
-                <li id="activitiesNav"><a><i class="fas fa-tasks"></i> Activities</a></li>
+                <li id="activitiesNav"><a><i class="fas fa-tasks"></i> MODULE 2: Activities</a></li>
                 <li id="submissionsNav"><a><i class="fas fa-users-viewfinder"></i> Student Submissions</a></li>
             </ul>
         </nav>
@@ -691,44 +691,216 @@
     currentModuleData = null;
     renderSubmissionsPage();
     });
-    // ---------- ACTIVITIES DATA (12 activities) ----------
-const activitiesList = [
-  {
-    id: 1,
-    title: "Lesson 1: The Emergence of Post-9/11 Literature",
-    objective: "Analyze how post-9/11 literature emerged as a response to the September 11 attacks, distinguishing its themes and stylistic shifts from postmodernism.",
-    instructions: "1. Think–Pair–Share: Reflect on how people respond to tragic events, then share ideas with a partner.\n2. Concept Mapping: Create a visual map of themes connected to the September 11 attacks (e.g., fear, unity, grief).\n3. Short Reading Analysis: Read a provided short excerpt and identify initial emotional responses.",
-    output: "Completed concept map + short reading notes (submitted via LMS)"
-  },
-  {
+    // ---------- ACTIVITIES DATA (5 activities) ----------
+const lessonData = [
+{
+  id: 1,
+  title: "Lesson 1: The Emergence of Post-9/11 Literature",
+  components: [
+    {
+      category: "Activity",
+      title: "Concept Mapping & Reading Analysis",
+      objective: "Analyze how post-9/11 literature emerged...",
+      instructions: "1. Think–Pair–Share: Students reflect on how people respond to tragic events, then share ideas with a partner.\n2. Concept Mapping: Create a visual map of themes connected to the September 11 attacks (e.g., fear, unity, grief).\n3. Short Reading Analysis:  Provide a short excerpt and let students identify initial emotional responses.",
+      output: "Completed concept map + short reading notes"
+    },
+    {
+      category: "Quiz",
+      title: "Key Terms & Concepts Quiz",
+      objective: "Recall key terms and influences of post-9/11 literature.",
+      instructions: "1. What is post-9/11 literature?\n2. What major event influenced this movement?\n3. Which characteristic distinguishes post-9/11 writing from postmodernism?\n4. Why did writers shift toward sincerity?\n5. What theme is commonly explored?",
+      output: "Quiz answers submitted via LMS"
+    },
+    {
+      category: "Assessment",
+      title: "Short Reflection (1-2 paragraphs):",
+      objective: "Create a 1-2 paragraphs reflection.",
+      instructions: "'Why is literature important after major tragedies?'",
+      output: "Submitted answers"
+    },
+    {
+      category: "Assignment",
+      title: "Journal Entry",
+      objective: "Write a journal entry.",
+      instructions: "Write a journal entry imagining you are a writer in 2001 reacting to the event.",
+      output: "Essay uploaded"
+    },
+    {
+      category: "Forum Discussion",
+      title: "Collective Grief in Literature",
+      objective: "Share and respond to peer interpretations.",
+      instructions: "Prompt: “Do you think literature can help people heal after tragedies? Why or why not?”",
+      output: "Discussion thread contributions"
+    }
+  ]
+},
+{
     id: 2,
     title: "Lesson 2: Trauma and Memory in Literature",
-    objective: "Examine how trauma and memory are represented in post-9/11 literature, focusing on narrative fragmentation and collective memory.",
-    instructions: "1. Close Reading: Analyze an excerpt from Extremely Loud & Incredibly Close focusing on emotions.\n2. Memory Timeline: Create a timeline showing how memory appears in the story.\n3. Group Discussion: Discuss how trauma affects the way people remember events.",
-    output: "Memory timeline + group discussion notes (submitted as a document)"
-  },
-  {
+    components: [
+    {
+        category: "Activity",
+        title: "Learning Activities",
+        objective: "Students will explore how trauma and memory are represented in literature through analysis, visualization, and discussion.",
+        instructions: "1. Close Reading: Analyze an excerpt from Extremely Loud & Incredibly Close focusing on emotions.\n2. Memory Timeline: Students create a timeline showing how memory appears in the story.\n3. Group Discussion: How does trauma affect the way people remember events?",
+        output: "Submit via lms."
+    },
+    {
+        category: "Quiz",
+        title: "Quiz Questions",
+        objective: "Students will demonstrate their understanding of key concepts related to trauma, memory, and narrative structure.",
+        instructions: "1. What is trauma?\n2. How is memory presented in post-9/11 literature?\n3. Why are narratives often fragmented?\n4. Who is the main character in the novel discussed?\n5. What does collective memory mean?",
+        output: "Submit via lms"
+    },
+    {
+        category: "Assessment",
+        title: "Assessment Task",
+        objective: "Students will analyze a literary text and explain how trauma is conveyed using appropriate textual evidence.",
+        instructions: "Explain how trauma is shown in the story.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Assignment",
+        title: "Assignment Task",
+        objective: "Students will apply their knowledge of fragmented narrative style to create an original story that reflects the nature of memory and trauma.",
+        instructions: "Write a short narrative (300–500 words) using fragmented memory style.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Forum Discussion",
+        title: "Discussion",
+        objective: "Students will evaluate the reliability of memory in traumatic experiences and express their ideas with clear reasoning.",
+        instructions: "Prompt: “Is memory reliable when describing traumatic events? Explain your answer.”",
+        output: "Submit via lms."
+    }
+  ]
+},
+{
     id: 3,
     title: "Lesson 3: Fear, Security, and the Global Landscape",
-    objective: "Evaluate the tension between security and freedom in post-9/11 literature, and analyze how global politics shape narrative themes.",
-    instructions: "1. Debate: Participate in a debate on 'Security is more important than freedom.'\n2. Case Study Analysis: Examine themes in Saturday.\n3. Role Play: Act as citizens, government officials, and activists discussing surveillance.",
-    output: "Debate position paper (300 words) + role play reflection"
-  },
-  {
+    components: [
+    {
+        category: "Activity",
+        title: "Examining Fear, Security, and Freedom",
+        objective: "Students will explore how fear and security shape perspectives and actions through debate, literary analysis, and role-playing.",
+        instructions: "1. Debate: “Security is more important than freedom.”\n2. Case Study Analysis: Examine themes in Saturday.\n3. Role Play: Students act as citizens, government officials, and activists discussing surveillance.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Quiz",
+        title: "Key Concepts on Fear and Global Politics",
+        objective: "Students will demonstrate understanding of important concepts related to the War on Terror, surveillance, discrimination, and literary tensions.",
+        instructions: "1. What is the War on Terror?\n2. How did 9/11 affect global politics?\n3. What is surveillance?\n4. What issue is highlighted in relation to discrimination?\n5. What tension is commonly explored in literature?",
+        output: "Submit via lms."
+    },
+    {
+        category: "Assessment",
+        title: "Interpreting Fear in Literature",
+        objective: "Students will analyze how fear influences human behavior in post-9/11 literature using clear arguments and supporting details.",
+        instructions: "<b>Short Essay (300 words):</b>\n“How does fear influence human behavior in post-9/11 literature?”",
+        output: "Submit via lms."
+    },
+    {
+        category: "Assignment",
+        title: "Investigating Global Responses",
+        objective: "Students will research and evaluate how a specific country responded to 9/11 and present their insights in a structured reaction paper.",
+        instructions: "Research and write a reaction paper on how one country responded to 9/11.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Forum Discussion",
+        title: "Balancing Safety and Freedom",
+        objective: "Students will assess whether governments should prioritize security over personal freedom and justify their position with logical reasoning.",
+        instructions: "Prompt: “Should governments prioritize safety over personal freedom?”",
+        output: "Submit via lms."
+    },
+]
+},
+{
     id: 4,
     title: "Lesson 4: Changing Narrative Styles and Literary Approaches",
-    objective: "Compare postmodern and post-9/11 narrative styles, and explain why writers shifted toward realism and emotional sincerity.",
-    instructions: "1. Comparative Reading: Compare postmodern vs. post-9/11 texts.\n2. Style Identification: Analyze excerpts from Falling Man.\n3. Writing Exercise: Rewrite a text using a more realistic tone.",
-    output: "Comparative analysis chart + rewritten realistic passage"
-  },
-  {
+    components: [
+    {
+        category: "Activity",
+        title: "Exploring Fear and Security Through Interaction",
+        objective: "Students will examine the relationship between fear, security, and freedom through debate, analysis, and role-playing activities.",
+        instructions: "1. Comparative Reading: Compare postmodern vs. post-9/11 texts.\n2. Style Identification: Analyze excerpts from Falling Man.\n3. Writing Exercise: Rewrite a text using a more realistic tone.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Quiz",
+        title: "Understanding Key Concepts",
+        objective: "Students will demonstrate their knowledge of major ideas related to post-9/11 global politics, surveillance, and themes in literature.",
+        instructions: "1. What is postmodernism?\n2. What change occurred in literary style after 9/11?\n3. Why did writers move away from irony?\n4. What is realism?\n5. Why are multiple perspectives used?",
+        output: "Submit via lms."
+    },
+    {
+        category: "Assessment",
+        title: "Analyzing Fear in Literature",
+        objective: "Students will analyze how fear influences human behavior in post-9/11 literature using clear reasoning and textual support.",
+        instructions: "Identify and explain one narrative technique used in post-9/11 literature.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Assignment",
+        title: "Global Perspectives on 9/11",
+        objective: "Students will investigate and explain how different countries responded to 9/11, developing research and critical thinking skills.",
+        instructions: "Write a short story (500 words) using a realistic and emotional tone.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Forum Discussion",
+        title: "Security vs. Freedom",
+        objective: "Students will evaluate the balance between safety and personal freedom and express their viewpoints with supporting arguments.",
+        instructions: "Prompt: “Which style is more effective in portraying real-life events—postmodern or realistic? Why?”",
+        output: "Submit via lms."
+    }
+    ]
+},
+{
     id: 5,
     title: "Lesson 5: Expanding Perspectives and Literature for Younger Readers",
-    objective: "Explore transnational perspectives and how children's literature addresses difficult historical events with resilience and hope.",
-    instructions: "1. Global Perspective Analysis: Read excerpts from different cultural viewpoints and compare themes.\n2. Children’s Book Review: Analyze This Very Tree: A Story of 9/11, Resilience, and Regrowth.\n3. Creative Task: Create a short illustrated story about resilience.",
-    output: "Book review (300 words) + illustrated story (digital or scanned)"
-  }
+    components: [
+    {
+        category: "Activity",
+        title: "Exploring Diverse Perspectives and Resilience",
+        objective: "Students will examine how different cultural perspectives and children’s literature present themes of resilience through analysis and creative expression.",
+        instructions: "1. Global Perspective Analysis: Read excerpts from different cultural viewpoints and compare themes.\n2. Children’s Book Review: Analyze This Very Tree: A Story of 9/11, Resilience, and Regrowth.\n3. Creative Task: Create a short illustrated story about resilience.",
+        output: "Submit via lms." 
+    },
+    {
+        category: "Quiz",
+        title: "Understanding Perspectives and Themes",
+        objective: "Students will explain the importance of including diverse viewpoints in literature using clear reasoning and personal reflection.",
+        instructions: "1. What are transnational perspectives?\n2. Why is diversity important in literature?\n3. What theme is common in children’s literature about 9/11?\n4. What does the Survivor Tree symbolize?\n5. How do children’s books present difficult topics?",
+        output: "Submit via lms."
+    },
+    {
+        category: "Assessment",
+        title: "Reflecting on Multiple Perspectives",
+        objective: "Students will explain the importance of including diverse viewpoints in literature using clear reasoning and personal reflection.",
+        instructions: "<b>Reflection Essay (300 words):</b>\n“Why is it important to include multiple perspectives in literature?”",
+        output: "Submit via lms." 
+    },
+    {
+        category: "Assignment",
+        title: "Creating Hopeful Narratives",
+        objective: "Students will apply their understanding of tone and theme to create a children’s story or poem that presents a difficult event in a hopeful way.",
+        instructions: "Create a children’s story or poem explaining a difficult event in a hopeful way.",
+        output: "Submit via lms." 
+    },
+    {
+        category: "Forum Discussion",
+        title: "Literature and Historical Understanding",
+        objective: "Students will evaluate how literature helps younger audiences understand historical events and express their ideas with supporting examples.",
+        instructions: "Prompt: “How can literature help younger generations understand historical events?”",
+        output: "Submit via lms." 
+    }
+    ]
+}
+
 ];
+
 
 // Local storage key
 const STORAGE_KEY = "21stCentury_ActivitySubmissions";
@@ -760,74 +932,106 @@ function escapeHtml(str) {
 }
 
 function renderActivitiesPage() {
-    const submissionsMap = loadSubmissions();
+    const submissionsMap = loadSubmissions(); // keys like "lesson-1-Activity", "lesson-2-Activity"
     let html = `<div class="activities-header">
                     <h2><i class="fas fa-clipboard-list"></i> Course Activities</h2>
                     <p>Complete and submit each activity below. Your submissions are saved automatically in your browser.</p>
                 </div>`;
     
-    activitiesList.forEach(act => {
-        const saved = submissionsMap[act.id] || null;
-        const savedText = saved ? saved.text : "";
-        const statusHtml = saved ? `<div class="submission-status"><i class="fas fa-check-circle"></i> Submitted on ${saved.timestamp}</div>` 
-                                  : `<div class="submission-status" style="background:#f1f5f9; color:#475569;"><i class="fas fa-clock"></i> Not submitted yet</div>`;
+    // Loop over each lesson in the array
+    lessonData.forEach(lesson => {
+        html += `<div class="activity-card" data-lesson-id="${lesson.id}">
+                    <details>
+                        <summary>${lesson.id}. ${lesson.title}</summary>
+                        <div class="activity-detail-content">`;
         
-        html += `
-            <div class="activity-card" data-activity-id="${act.id}">
-                <details>
-                    <summary>${act.id}. ${act.title}</summary>
-                    <div class="activity-detail-content">
-                        <div class="obj-box"><strong>Objective:</strong> ${act.objective}</div>
+        // Loop over components for this lesson
+        lesson.components.forEach(comp => {
+            const storageKey = `lesson-${lesson.id}-${comp.category}`;
+            const saved = submissionsMap[storageKey] || null;
+            const savedText = saved ? saved.text : "";
+            const statusHtml = saved ? `<div class="submission-status"><i class="fas fa-check-circle"></i> Submitted on ${saved.timestamp}</div>` 
+                                      : `<div class="submission-status" style="background:#f1f5f9; color:#475569;"><i class="fas fa-clock"></i> Not submitted yet</div>`;
+            
+            let icon = "📘";
+            if (comp.category === "Quiz") icon = "📝";
+            else if (comp.category === "Assignment") icon = "📄";
+            else if (comp.category === "Assessment") icon = "📊";
+            else if (comp.category === "Forum Discussion") icon = "💬";
+            else if (comp.category === "Activity") icon = "🎯";
+            
+            html += `
+                <div class="component-block" data-category="${comp.category}">
+                    <div class="component-header">
+                        <span class="category-badge"><h2>${comp.category.toUpperCase()}</h2></span>
+                        <h4>${comp.title}</h4>
+                    </div>
+                    <div class="component-body">
+                        <div class="obj-box"><strong>Objective:</strong> ${comp.objective}</div>
                         <div class="instruction-box">
                             <strong><i class="fas fa-list-ul"></i> Instructions:</strong><br>
-                            ${act.instructions.replace(/\n/g, '<br>')}
+                            ${comp.instructions ? comp.instructions.replace(/\n/g, '<br>') : 'No instructions provided.'}
                             <hr style="margin: 12px 0;">
-                            <strong>Required Output:</strong> ${act.output}
+                            <strong>Required Output:</strong> ${comp.output || 'Not specified'}
                         </div>
-                        <div class="submission-area" id="sub-area-${act.id}">
+                        <div class="submission-area" id="sub-area-${storageKey}">
                             <label><i class="fas fa-upload"></i> Your submission (text, link, or description):</label>
-                            <textarea class="submission-text" id="submission-text-${act.id}" rows="4" placeholder="Paste your discussion post, link to Google Form, video URL, infographic link, reflection...">${escapeHtml(savedText)}</textarea>
+                            <textarea class="submission-text" id="submission-text-${storageKey}" rows="4" 
+                                placeholder="Paste your discussion post, link to Google Form, video URL, infographic link, reflection...">${escapeHtml(savedText)}</textarea>
                             <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                <button class="btn-submit" data-act-id="${act.id}"><i class="fas fa-paper-plane"></i> Submit Activity</button>
-                                <button class="btn-submit clear-btn" data-act-id="${act.id}" style="background:#64748b;"><i class="fas fa-trash-alt"></i> Clear Submission</button>
+                                <button class="btn-submit" data-storage-key="${storageKey}" data-category="${comp.category}"><i class="fas fa-paper-plane"></i> Submit ${comp.category}</button>
+                                <button class="btn-submit clear-btn" data-storage-key="${storageKey}" data-category="${comp.category}" style="background:#64748b;"><i class="fas fa-trash-alt"></i> Clear Submission</button>
                             </div>
                             ${statusHtml}
                             ${saved && saved.text ? `<div class="saved-preview"><strong>📎 Current preview:</strong><br>${escapeHtml(saved.text.substring(0, 200))}${saved.text.length > 200 ? '...' : ''}</div>` : ''}
                         </div>
                     </div>
-                </details>
-            </div>
-        `;
+                </div>
+                <hr class="component-separator">
+            `;
+        });
+        
+        html += `      </div>
+                    </details>
+                </div>`;
     });
     
     html += `<div style="margin-top: 20px; text-align: center; font-size: 0.8rem; color: #5b6e8c;"><i class="fas fa-database"></i> All submissions saved locally. You can update any activity anytime.</div>`;
     document.getElementById('dynamicContent').innerHTML = html;
     
-    // Attach event listeners
-    activitiesList.forEach(act => {
-        const submitBtn = document.querySelector(`.btn-submit[data-act-id="${act.id}"]`);
-        if (submitBtn && !submitBtn.hasAttribute('data-listener')) {
-            submitBtn.setAttribute('data-listener', 'true');
-            submitBtn.addEventListener('click', () => {
-                const textarea = document.getElementById(`submission-text-${act.id}`);
-                const val = textarea.value.trim();
-                if (!val) { alert("Please enter your submission content."); return; }
-                updateSubmission(act.id, val);
+    attachComponentEventListeners();
+}
+
+// Helper to attach event listeners (call after rendering)
+function attachComponentEventListeners() {
+    // Submit buttons (excluding clear buttons)
+    document.querySelectorAll('.btn-submit:not(.clear-btn)').forEach(btn => {
+        if (btn.hasAttribute('data-listener')) return;
+        btn.setAttribute('data-listener', 'true');
+        btn.addEventListener('click', (e) => {
+            const storageKey = btn.dataset.storageKey;
+            const textarea = document.getElementById(`submission-text-${storageKey}`);
+            const val = textarea.value.trim();
+            if (!val) { alert("Please enter your submission content."); return; }
+            updateSubmission(storageKey, val);  // updateSubmission must accept string key
+            renderActivitiesPage();
+        });
+    });
+    
+    // Clear buttons
+    document.querySelectorAll('.clear-btn').forEach(btn => {
+        if (btn.hasAttribute('data-clear-listener')) return;
+        btn.setAttribute('data-clear-listener', 'true');
+        btn.addEventListener('click', (e) => {
+            const storageKey = btn.dataset.storageKey;
+            const category = btn.dataset.category;
+            if (confirm(`Clear submission for "${category}"?`)) {
+                let subs = loadSubmissions();
+                delete subs[storageKey];
+                saveSubmissions(subs);
                 renderActivitiesPage();
-            });
-        }
-        const clearBtn = document.querySelector(`.clear-btn[data-act-id="${act.id}"]`);
-        if (clearBtn && !clearBtn.hasAttribute('data-clear-listener')) {
-            clearBtn.setAttribute('data-clear-listener', 'true');
-            clearBtn.addEventListener('click', () => {
-                if (confirm(`Clear submission for "${act.title}"?`)) {
-                    let subs = loadSubmissions();
-                    delete subs[act.id];
-                    saveSubmissions(subs);
-                    renderActivitiesPage();
-                }
-            });
-        }
+            }
+        });
     });
 }
     // Mobile menu toggle
