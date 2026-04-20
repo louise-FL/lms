@@ -509,6 +509,8 @@
             <ul>
                 <li id="midtermNav" class="active"><a><i class="fas fa-book-open"></i> MODULE 2: Understanding Post-9/11 Literature</a></li>
                 <li id="activitiesNav"><a><i class="fas fa-tasks"></i> MODULE 2: Activities</a></li>
+                <li id="module3Nav"><a><i class="fas fa-book-open"></i> MODULE 3</a></li>
+                <li id="module3ActivitiesNav"><a><i class="fas fa-tasks"></i> MODULE 3: Activities</a></li>
                 <li id="submissionsNav"><a><i class="fas fa-users-viewfinder"></i> Student Submissions</a></li>
             </ul>
         </nav>
@@ -596,8 +598,18 @@
 
     // Helper: render module list (given array of modules, title of section)
     function renderModuleList(modules, sectionTitle) {
-        let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;"><h2>MODULE 2: Understanding Post-9/11 Literature</h2></div>
-        <div style="font-size:13px;margine-bottom:5px;"><p>The events of the September 11 attacks marked a turning point not only in global politics but also in literature. Writers across the world responded to the tragedy by producing works that reflect grief, confusion, fear, and resilience. This body of writing, commonly referred to as post-9/11 literature, captures how individuals and societies attempt to understand traumatic events through storytelling. In this module, you will explore how literature became a space for reflection, memory, and dialogue after one of the most significant events of the 21st century.</p></div>`;
+        let title = sectionTitle;
+        let description = '';
+        if (sectionTitle === 'Midterm') {
+            title = 'MODULE 2: Understanding Post-9/11 Literature';
+            description = 'The events of the September 11 attacks marked a turning point not only in global politics but also in literature. Writers across the world responded to the tragedy by producing works that reflect grief, confusion, fear, and resilience. This body of writing, commonly referred to as post-9/11 literature, captures how individuals and societies attempt to understand traumatic events through storytelling. In this module, you will explore how literature became a space for reflection, memory, and dialogue after one of the most significant events of the 21st century.';
+        } else if (sectionTitle === 'Module 3') {
+            title = 'MODULE 3';
+            description = 'Module 3 content and lessons will be displayed here.';
+        }
+        
+        let html = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;"><h2>${title}</h2></div>
+        <div style="font-size:13px;margine-bottom:5px;"><p>${description}</p></div>`;
         html += `<div class="module-list">`;
         modules.forEach((mod, idx) => {
             html += `
@@ -617,9 +629,18 @@
     }
 
     // State management
-    let currentView = 'midtermList'; // 'midtermList', 'finalList', 'midtermDetail', 'finalDetail', 'activities'
+    let currentView = 'midtermList'; // 'midtermList', 'finalList', 'midtermDetail', 'finalDetail', 'activities', 'module3List', 'module3Activities'
     let currentModuleData = null; // store module object
     let currentSection = 'mid'; // 'mid' or 'fin'
+
+    // MODULE 3 content - placeholder for now
+    const module3Modules = [
+        {
+            id: "m3_1",
+            title: "Lesson 1: Module 3",
+            content: `<h2>Module 3 - Lesson 1</h2><p>Content for Module 3 will be added here.</p>`
+        }
+    ];
 
     const contentDiv = document.getElementById('dynamicContent');
 
@@ -635,8 +656,24 @@
                 render();
             });
         }
+        else if (currentView === 'module3List') {
+            contentDiv.innerHTML = renderModuleList(module3Modules, 'Module 3');
+            attachModuleItemListeners('m3');
+        }
+        else if (currentView === 'module3Detail' && currentModuleData) {
+            contentDiv.innerHTML = renderModuleDetail(currentModuleData, 'Module 3');
+            document.getElementById('backToListBtn')?.addEventListener('click', () => {
+                currentView = 'module3List';
+                render();
+            });
+        }
         else if (currentView === 'activities') {
-            renderActivitiesPage();
+            window.currentModule = 2;
+            renderActivitiesPage(2);
+        }
+        else if (currentView === 'module3Activities') {
+            window.currentModule = 3;
+            renderActivitiesPage(3);
         }
         else if (currentView === 'submissions') {
         renderSubmissionsPage();
@@ -654,6 +691,10 @@
                     currentModuleData = midtermModules[idx];
                     currentView = 'midtermDetail';
                 }
+                else if (section === 'm3') {
+                    currentModuleData = module3Modules[idx];
+                    currentView = 'module3Detail';
+                }
                 render();
             });
         });
@@ -662,11 +703,13 @@
     // Sidebar navigation
     const midtermNav = document.getElementById('midtermNav');
     const activitiesNav = document.getElementById('activitiesNav');
+    const module3Nav = document.getElementById('module3Nav');
+    const module3ActivitiesNav = document.getElementById('module3ActivitiesNav');
     const submissionsNav = document.getElementById('submissionsNav');
     
 
     function setActiveNav(active) {
-        [midtermNav, activitiesNav, submissionsNav].forEach(nav => nav.classList.remove('active'));
+        [midtermNav, activitiesNav, module3Nav, module3ActivitiesNav, submissionsNav].forEach(nav => nav.classList.remove('active'));
         active.classList.add('active');
     }
 
@@ -681,6 +724,20 @@
         e.preventDefault();
         setActiveNav(activitiesNav);
         currentView = 'activities';
+        currentModuleData = null;
+        render();
+    });
+    module3Nav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(module3Nav);
+        currentView = 'module3List';
+        currentModuleData = null;
+        render();
+    });
+    module3ActivitiesNav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(module3ActivitiesNav);
+        currentView = 'module3Activities';
         currentModuleData = null;
         render();
     });
@@ -897,8 +954,132 @@ const lessonData = [
         output: "Submit via lms." 
     }
     ]
-}
+}];
 
+const lessonData3 = [
+{
+  id: 1,
+  title: "Module 3 - Lesson 1: Advanced Literary Analysis",
+  components: [
+    {
+      category: "Activity",
+      title: "Comparative Text Analysis",
+      objective: "Analyze and compare two different literary works from post-9/11 literature.",
+      instructions: "1. Select two texts from the provided reading list.\n2. Create a Venn diagram comparing themes, style, and narrative techniques.\n3. Write a brief analysis (200-300 words) identifying similarities and differences.",
+      output: "Completed Venn diagram + analysis essay"
+    },
+    {
+      category: "Quiz",
+      title: "Advanced Literary Concepts",
+      objective: "Demonstrate understanding of complex literary themes and techniques.",
+      instructions: "1. What is intertextuality?\n2. How do writers use symbolism in post-9/11 literature?\n3. Define metafiction and provide an example.\n4. Explain the concept of narrative unreliability.\n5. What is the significance of magical realism in contemporary literature?",
+      output: "Quiz answers submitted via LMS"
+    },
+    {
+      category: "Assessment",
+      title: "Literary Essay",
+      objective: "Write a comprehensive analytical essay on a post-9/11 literary work.",
+      instructions: "Write a 2-3 page essay analyzing how a specific literary work reflects the post-9/11 era and its impact on society.",
+      output: "Submitted essay (2-3 pages)"
+    },
+    {
+      category: "Assignment",
+      title: "Creative Writing Project",
+      objective: "Create original literary work inspired by post-9/11 themes.",
+      instructions: "Write an original short story or poem (400-600 words) that explores themes of resilience, identity, or social change inspired by post-9/11 literature.",
+      output: "Creative work uploaded"
+    },
+    {
+      category: "Forum Discussion",
+      title: "Global Literary Movements",
+      objective: "Discuss how post-9/11 literature influenced global literary trends.",
+      instructions: "Prompt: \"How did post-9/11 literature influence writers and literary movements in other countries? Provide specific examples.\"",
+      output: "Discussion thread contributions"
+    }
+  ]
+},
+{
+    id: 2,
+    title: "Module 3 - Lesson 2: Cultural and Postcolonial Perspectives",
+    components: [
+    {
+        category: "Activity",
+        title: "Postcolonial Analysis",
+        objective: "Examine literature through a postcolonial lens and understand power dynamics.",
+        instructions: "1. Read excerpts from postcolonial authors writing about 9/11.\n2. Identify instances of cultural representation and stereotyping.\n3. Create an annotated document highlighting key passages and your analysis.",
+        output: "Submit annotated analysis via lms."
+    },
+    {
+        category: "Quiz",
+        title: "Postcolonial Theory and Global Perspectives",
+        objective: "Understand postcolonial theory and its application to contemporary literature.",
+        instructions: "1. What is postcolonial theory?\n2. How does orientalism relate to post-9/11 literature?\n3. What is cultural hybridity?\n4. How do postcolonial writers challenge Western narratives?\n5. Give an example of a postcolonial author writing about 9/11.",
+        output: "Submit via lms"
+    },
+    {
+        category: "Assessment",
+        title: "Perspective Essay",
+        objective: "Analyze how different cultural perspectives shape interpretation of historical events.",
+        instructions: "Write a 2-page essay comparing how Western and non-Western writers represent post-9/11 events.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Assignment",
+        title: "Cross-Cultural Research Project",
+        objective: "Research and present how different cultures responded to 9/11 through literature.",
+        instructions: "Select a non-Western country and research how their writers responded to 9/11. Create a presentation or infographic (3-5 slides/pages).",
+        output: "Submit via lms."
+    },
+    {
+        category: "Forum Discussion",
+        title: "Representation and Authenticity",
+        objective: "Discuss the importance of authentic representation in literature.",
+        instructions: "Prompt: \"Who should tell stories about marginalized communities? Can outsiders authentically represent another culture?\"",
+        output: "Submit via lms."
+    }
+  ]
+},
+{
+    id: 3,
+    title: "Module 3 - Lesson 3: Digital Media and Modern Narratives",
+    components: [
+    {
+        category: "Activity",
+        title: "Multimedia Storytelling Analysis",
+        objective: "Explore how contemporary narratives extend beyond traditional literature.",
+        instructions: "1. Analyze a documentary, film, or podcast about 9/11.\n2. Compare its narrative approach to literary works studied.\n3. Create a multimedia presentation analyzing how medium affects storytelling.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Quiz",
+        title: "Digital Narratives and Modern Media",
+        objective: "Understand how technology has transformed storytelling.",
+        instructions: "1. How does hypertext fiction differ from traditional narrative?\n2. What is transmedia storytelling?\n3. How do social media narratives reflect post-9/11 experiences?\n4. What advantages do graphic novels have in conveying trauma?\n5. How has podcast storytelling evolved?",
+        output: "Submit via lms"
+    },
+    {
+        category: "Assessment",
+        title: "Media Analysis",
+        objective: "Critically analyze how different media present historical events.",
+        instructions: "Choose a film, documentary, or podcast about 9/11 and write a critical analysis (2-3 pages) of its narrative techniques and effectiveness.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Assignment",
+        title: "Digital Story Creation",
+        objective: "Create an original multimedia narrative or interactive story.",
+        instructions: "Create a digital story, interactive narrative, podcast script, or graphic narrative (equivalent to 500-700 words) inspired by post-9/11 themes.",
+        output: "Submit via lms."
+    },
+    {
+        category: "Forum Discussion",
+        title: "Evolution of Storytelling",
+        objective: "Discuss how technology has changed the way we tell and consume stories.",
+        instructions: "Prompt: \"How has digital media changed the way we understand and remember historical events like 9/11?\"",
+        output: "Submit via lms."
+    }
+  ]
+}
 ];
 
 
@@ -931,35 +1112,31 @@ function escapeHtml(str) {
     });
 }
 
-function renderActivitiesPage() {
-    const submissionsMap = loadSubmissions(); // keys like "lesson-1-Activity", "lesson-2-Activity"
+function renderActivitiesPage(module = 2) {
+    const submissionsMap = loadSubmissions(); // keys like "lesson-1"
+    const data = module === 3 ? lessonData3 : lessonData;
+    const title = module === 3 ? 'MODULE 3: Activities' : 'MODULE 2: Activities';
+    
     let html = `<div class="activities-header">
-                    <h2><i class="fas fa-clipboard-list"></i> Course Activities</h2>
-                    <p>Complete and submit each activity below. Your submissions are saved automatically in your browser.</p>
+                    <h2><i class="fas fa-clipboard-list"></i> ${title}</h2>
+                    <p>Complete and submit each lesson below. Your submissions are saved automatically in your browser.</p>
                 </div>`;
     
     // Loop over each lesson in the array
-    lessonData.forEach(lesson => {
+    data.forEach(lesson => {
+        const storageKey = `lesson-${lesson.id}`;
+        const saved = submissionsMap[storageKey] || null;
+        const savedText = saved ? saved.text : "";
+        const statusHtml = saved ? `<div class="submission-status"><i class="fas fa-check-circle"></i> Submitted on ${saved.timestamp}</div>` 
+                                  : `<div class="submission-status" style="background:#f1f5f9; color:#475569;"><i class="fas fa-clock"></i> Not submitted yet</div>`;
+        
         html += `<div class="activity-card" data-lesson-id="${lesson.id}">
                     <details>
                         <summary>${lesson.id}. ${lesson.title}</summary>
                         <div class="activity-detail-content">`;
         
-        // Loop over components for this lesson
+        // Loop over components for this lesson and display them without individual submission buttons
         lesson.components.forEach(comp => {
-            const storageKey = `lesson-${lesson.id}-${comp.category}`;
-            const saved = submissionsMap[storageKey] || null;
-            const savedText = saved ? saved.text : "";
-            const statusHtml = saved ? `<div class="submission-status"><i class="fas fa-check-circle"></i> Submitted on ${saved.timestamp}</div>` 
-                                      : `<div class="submission-status" style="background:#f1f5f9; color:#475569;"><i class="fas fa-clock"></i> Not submitted yet</div>`;
-            
-            let icon = "📘";
-            if (comp.category === "Quiz") icon = "📝";
-            else if (comp.category === "Assignment") icon = "📄";
-            else if (comp.category === "Assessment") icon = "📊";
-            else if (comp.category === "Forum Discussion") icon = "💬";
-            else if (comp.category === "Activity") icon = "🎯";
-            
             html += `
                 <div class="component-block" data-category="${comp.category}">
                     <div class="component-header">
@@ -974,29 +1151,31 @@ function renderActivitiesPage() {
                             <hr style="margin: 12px 0;">
                             <strong>Required Output:</strong> ${comp.output || 'Not specified'}
                         </div>
-                        <div class="submission-area" id="sub-area-${storageKey}">
-                            <label><i class="fas fa-upload"></i> Your submission (text, link, or description):</label>
-                            <textarea class="submission-text" id="submission-text-${storageKey}" rows="4" 
-                                placeholder="Paste your discussion post, link to Google Form, video URL, infographic link, reflection...">${escapeHtml(savedText)}</textarea>
-                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                <button class="btn-submit" data-storage-key="${storageKey}" data-category="${comp.category}"><i class="fas fa-paper-plane"></i> Submit ${comp.category}</button>
-                                <button class="btn-submit clear-btn" data-storage-key="${storageKey}" data-category="${comp.category}" style="background:#64748b;"><i class="fas fa-trash-alt"></i> Clear Submission</button>
-                            </div>
-                            ${statusHtml}
-                            ${saved && saved.text ? `<div class="saved-preview"><strong>📎 Current preview:</strong><br>${escapeHtml(saved.text.substring(0, 200))}${saved.text.length > 200 ? '...' : ''}</div>` : ''}
-                        </div>
                     </div>
                 </div>
                 <hr class="component-separator">
             `;
         });
         
-        html += `      </div>
-                    </details>
-                </div>`;
+        // Single submission area for the entire lesson
+        html += `
+                        <div class="submission-area" id="sub-area-${storageKey}">
+                            <label><i class="fas fa-upload"></i> Your lesson submission (text, link, or description):</label>
+                            <textarea class="submission-text" id="submission-text-${storageKey}" rows="4" 
+                                placeholder="Paste your discussion post, link to Google Form, video URL, infographic link, reflection or description of completed activities...">${escapeHtml(savedText)}</textarea>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                <button class="btn-submit" data-storage-key="${storageKey}" data-lesson-id="${lesson.id}"><i class="fas fa-paper-plane"></i> Submit Lesson</button>
+                                <button class="btn-submit clear-btn" data-storage-key="${storageKey}" data-lesson-id="${lesson.id}" style="background:#64748b;"><i class="fas fa-trash-alt"></i> Clear Submission</button>
+                            </div>
+                            ${statusHtml}
+                            ${saved && saved.text ? `<div class="saved-preview"><strong>📎 Current preview:</strong><br>${escapeHtml(saved.text.substring(0, 200))}${saved.text.length > 200 ? '...' : ''}</div>` : ''}
+                        </div>
+                    </div>
+                </details>
+            </div>`;
     });
     
-    html += `<div style="margin-top: 20px; text-align: center; font-size: 0.8rem; color: #5b6e8c;"><i class="fas fa-database"></i> All submissions saved locally. You can update any activity anytime.</div>`;
+    html += `<div style="margin-top: 20px; text-align: center; font-size: 0.8rem; color: #5b6e8c;"><i class="fas fa-database"></i> All submissions saved locally. You can update any lesson anytime.</div>`;
     document.getElementById('dynamicContent').innerHTML = html;
     
     attachComponentEventListeners();
@@ -1013,8 +1192,9 @@ function attachComponentEventListeners() {
             const textarea = document.getElementById(`submission-text-${storageKey}`);
             const val = textarea.value.trim();
             if (!val) { alert("Please enter your submission content."); return; }
-            updateSubmission(storageKey, val);  // updateSubmission must accept string key
-            renderActivitiesPage();
+            updateSubmission(storageKey, val);
+            const currentModule = window.currentModule || 2;
+            renderActivitiesPage(currentModule);
         });
     });
     
@@ -1024,12 +1204,13 @@ function attachComponentEventListeners() {
         btn.setAttribute('data-clear-listener', 'true');
         btn.addEventListener('click', (e) => {
             const storageKey = btn.dataset.storageKey;
-            const category = btn.dataset.category;
-            if (confirm(`Clear submission for "${category}"?`)) {
+            const lessonId = btn.dataset.lessonId;
+            if (confirm(`Clear submission for Lesson ${lessonId}?`)) {
                 let subs = loadSubmissions();
                 delete subs[storageKey];
                 saveSubmissions(subs);
-                renderActivitiesPage();
+                const currentModule = window.currentModule || 2;
+                renderActivitiesPage(currentModule);
             }
         });
     });
