@@ -507,10 +507,16 @@
         </div>
         <nav class="sidebar-nav">
             <ul>
+                <li id="module1Nav"><a><i class="fas fa-book-open"></i> MODULE 1: Introduction to 21st Century World Literature; Canon Formation</a></li>
+                <li id="module1ActivitiesNav"><a><i class="fas fa-tasks"></i> MODULE 1: Activities</a></li>
                 <li id="midtermNav" class="active"><a><i class="fas fa-book-open"></i> MODULE 2: Understanding Post-9/11 Literature</a></li>
                 <li id="activitiesNav"><a><i class="fas fa-tasks"></i> MODULE 2: Activities</a></li>
                 <li id="module3Nav"><a><i class="fas fa-book-open"></i> MODULE 3: Literary Forms – Novels & Short Stories</a></li>
                 <li id="module3ActivitiesNav"><a><i class="fas fa-tasks"></i> MODULE 3: Activities</a></li>
+                <li id="module4Nav"><a><i class="fas fa-book-open"></i> MODULE 4: Poetry & Drama (e.g., Ocean Vuong, contemporary plays)</a></li>
+                <li id="module4ActivitiesNav"><a><i class="fas fa-tasks"></i> MODULE 4: Activities</a></li>
+                <li id="module5Nav"><a><i class="fas fa-book-open"></i> MODULE 5: Cultural Rootedness: Asian, African, Latin American Voices</a></li>
+                <li id="module5ActivitiesNav"><a><i class="fas fa-tasks"></i> MODULE 5: Activities</a></li>
                 <li id="submissionsNav"><a><i class="fas fa-users-viewfinder"></i> Student Submissions</a></li>
             </ul>
         </nav>
@@ -629,9 +635,87 @@
     }
 
     // State management
-    let currentView = 'midtermList'; // 'midtermList', 'finalList', 'midtermDetail', 'finalDetail', 'activities', 'module3List', 'module3Activities'
+    let currentView = 'midtermList'; // 'midtermList', 'module1List', 'module1Detail', 'midtermDetail', 'module3List', 'module3Detail', 'module4List', 'module4Detail', 'module5List', 'module5Detail', 'activities', 'module3Activities', etc.
     let currentModuleData = null; // store module object
-    let currentSection = 'mid'; // 'mid' or 'fin'
+    let currentSection = 'mid'; // 'mid', 'm3', 'm4', 'm5', etc.
+
+    // MODULE 1 content
+    const module1Modules = [
+        {
+            id: "m1_1",
+            title: "Lesson 1: The Rise of 21st Century World Literature in a Globalized World",
+            content: `<h2>Lesson 1: The Rise of 21st Century World Literature in a Globalized World</h2>
+            <p>In the 21st century, world literature has transformed into a vibrant tapestry woven from threads of globalization, migration, and digital connectivity. No longer confined to national silos, it circulates freely across borders, capturing the complexities of our shared human experience. This reading delves into how contemporary literature from Asia, Africa, Europe, Latin America, and beyond addresses pressing realities like technology's grip, climate crises, and cultural hybridity—issues that resonate deeply in diverse classrooms, such as those in the Philippines where local narratives like those of Nick Joaquin intersect with global voices.<br><br>Globalization fuels this literary explosion. Post-Cold War shifts dismantled old power blocs, allowing stories from the Global South to gain traction. Unlike 20th-century modernism's inward focus on fragmentation (think Joyce or Woolf), 21st-century works emphasize transnational lives. Chimamanda Ngozi Adichie's Americanah (2013) traces a Nigerian woman's navigation of race and identity in the U.S., blending blog-like commentary with sharp social critique. Similarly, Mohamedou Ould Slahi's Guantánamo Diary (2015) exposes global injustices through a Mauritanian lens, its English translation amplifying voices silenced by politics.<br><br>Technology accelerates this reach. Digital platforms like Wattpad host millions of user-generated stories, many from young writers in India or the Philippines experimenting with hybrid genres—fanfiction fused with folklore. Haruki Murakami's surreal novels, such as 1Q84 (2009), mirror tech-saturated alienation, where parallel worlds collide via cell phones and subways. In Latin America, Samanta Schweblin's Fever Dream (2014) evokes ecological dread amid pesticide-laced farmlands, a stark response to climate change.<br><br>Migration narratives dominate, reflecting mass movements. Valeria Luiselli's Lost Children Archive (2019) follows a family's road trip paralleling Central American migrant caravans, using audio recordings to layer soundscapes of displacement. From Asia, Imbolo Mbue's Behold the Dreamers (2016) dissects the American Dream's fragility for Cameroonian immigrants. These texts foster empathy, crucial for multicultural education. In Philippine contexts, imagining a student's family history amid OFW (Overseas Filipino Worker) stories makes such literature relatable, bridging personal tales with universal ones.<br><br>Pandemic-era works further highlight interconnectedness. Ling Ma's Severance (2018), presciently published pre-COVID, depicts a viral apocalypse where Chinese-American office drones persist in routines, critiquing capitalism's hold. This mirrors global responses to crises, urging readers to question borders.<br><br>Key to understanding this literature is David Damrosch's definition in What Is World Literature? (2003): texts that "circulate beyond their culture of origin" through translation and adaptation. Anthologies like the Norton Anthology of World Masterpieces now include more non-Western voices, evolving from Eurocentric roots.<br><br>For educators, this literature equips students with critical lenses. In ESP (English for Specific Purposes) classes, excerpts can spark discussions on hybrid identities, aligning with differentiated instruction for diverse learners. Tools like Google Classroom annotations help students map themes visually.<br><br>Yet challenges persist. Digital divides limit access in rural Philippines, where spotty internet hampers Wattpad engagement. Still, hybridity thrives—think Filipino-American authors like Gina Apostol blending Tagalog pidgin with English prose.<br><br>Video:<br>Chimamanda Ngozi Adichie's TED Talk "The Danger of a Single Story" 19 min, YouTube: https://www.youtube.com/watch?v=D9Ihs241zeg <br><br><iframe width="560" height="315" src="https://www.youtube.com/embed/D9Ihs241zeg?si=IlZF3orO9XJbbdwp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>`
+        },
+        {
+            id: "m1_2",
+            title: "Lesson 2: Unpacking Canon Formation: From Western Dominance to Global Debates",
+            content: `<h2>Lesson 2: Unpacking Canon Formation: From Western Dominance to Global Debates</h2>
+            <p>Canon formation—the process by which certain texts become "essential"—lies at the heart of 21st-century world literature. This reading unravels how cultural, political, and institutional forces elevate works, shifting from Eurocentric strongholds to inclusive, contested spaces. In postcolonial settings like the Philippines, understanding this empowers educators to curate reading lists that honor local voices alongside global ones.<br><br>Historically, the Western canon—Shakespeare, Dante, Tolstoy—reigned supreme, imposed via colonial education. British and American systems in the Philippines prioritized these, sidelining epics like Hinilawod. Pascale Casanova's The World Republic of Letters (2004) maps this as a "literary world system," with Paris as its old capital. Peripheral literatures from "small languages" vied for centrality through translation and prizes.<br><br>The 21st century disrupts this. Nobel Prizes spotlight outsiders: Bob Dylan's 2016 win for lyrics blurred song-poetry lines, sparking fury over canonicity. Mo Yan's 2012 award for Chinese fiction elevated rural grotesques, though critics decried his state ties. The Man Booker International honors translators too, as with David Mitchell's nod for Korean works.<br><br>Gatekeepers—publishers, universities, festivals—shape outcomes. Penguin Random House markets "world lit" profitably, exoticizing tales from Jhumpa Lahiri's Indian diaspora or Elif Shafak's Turkish feminism. Festivals like Jaipur or Hay spotlight emerging authors; the Philippines' Ilocandia Workshop nurtures local talents akin to Bienvenido Lumbera.<br><br>Universities adapt: Harvard's syllabi now feature Chimamanda Adichie over Jane Austen, driven by diversity pushes. JSTOR citations and Nielsen sales metrics quantify influence—Adichie's Half of a Yellow Sun racks up thousands.<br><br>Digital democratizes: Goodreads ratings propel self-published Global South voices; Wattpad stars like Filipino Wattys winners bypass elites. #OwnVoices on Twitter since 2015 amplifies marginalized authors, feminist Sara Ahmed's The Cultural Politics of Emotion (2004) theorizing emotional gatekeeping.<br><br>Yet biases linger. English translations favor "marketable" stories; Index Translationum shows 80% Euro-American dominance. Languages like Tagalog rarely circulate untranslated.<br><br>Postcolonial scholars like Timothy Brennan highlight politics: Canons form via negotiation, not merit alone. Queer and feminist interventions diversify—Ocean Vuong's On Earth We're Briefly Gorgeous (2019) claims space for Vietnamese-American queer narratives.<br><br>In education, this informs inclusive practices. Tomlinson's differentiated instruction shines here: Assign Pachinko by Min Jin Lee for history buffs, poetry for linguists. Canva timelines visualize canon evolution from Bloom's 1994 defense to today's inclusivity.<br><br>Economic angles: The $143 billion book market (Statista 2023) incentivizes conglomerates, yet indie presses challenge them.<br><br>Video: TED-Ed's "Why should you read Shakespeare’s 'The Tempest'?" 5 min, YouTube: https://www.youtube.com/watch?v=Sp8XqdgVt0A<br><br><iframe width="560" height="315" src="https://www.youtube.com/embed/UvznOeSyESU?si=YkT08UwtJlrMcL6q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>`
+        },
+        {
+            id: "m1_3",
+            title: "Lesson 3: Translation, Digital Platforms, and the Democratization of World Literature",
+            content: `<h2>Lesson 3: Translation, Digital Platforms, and the Democratization of World Literature</h2>
+            <p>Translation and digital tools propel 21st-century world literature into new orbits, reshaping canon formation. This reading examines how these forces challenge hierarchies, making peripheral voices audible—vital for Philippine educators blending Tagalog lore with global texts in ESP classrooms.<br><br>Lawrence Venuti's domestication (fluent, invisible translation) versus foreignization (retaining source strangeness) dichotomy is key. Gregory Rabassa's smooth renditions of Gabriel García Márquez's magical realism domesticated Latin American booms, embedding them in English canons. Conversely, foreignizing Tagalog works preserves rhythms, as in Lumbera's vernacular pushes.<br><br>Prizes reward translators: The International Booker recognizes pairs, boosting Korean's Han Kang (The Vegetarian, 2016). Yet, only 3% of U.S. publications are translations (Publishers Weekly), skewed to French/Spanish.<br><br>Digital platforms shatter gates. Wattpad's 90 million users spawn hits like After series, now films; Filipino authors thrive here. Goodreads democratizes reviews—user votes elevate Adichie. Blogs and Substack essays dissect canons quantitatively.<br><br>Inequalities persist: Algorithms favor English; Swahili or Hiligaynon struggle without anglicization. Still, apps like Duolingo pair with literature, aiding access.<br><br>In Asia, Mo Yan's Nobel rode translations, but backlash highlighted politics. Festivals digitize: Virtual Hay panels reach Philippine viewers.<br><br>Data analytics via Franco Moretti's "distant reading" maps this—graphs reveal Euro-bias in translations.<br><br>For teaching, Google Drive-shared annotated texts support diverse learners; YouTube readings model pronunciation.<br><br>Video: "The Power of Translation" by Ann Morgan (14 min, YouTube: https://www.youtube.com/watch?v=example-translation-power <br>note: search "Ann Morgan translation TED" for her talk on reading world literature in original languages). <br><br></p>`
+        },
+        {
+            id: "m1_4",
+            title: "Lesson 4: Pedagogical Implications and Inclusive Canons in 21st Century World Literature",
+            content: `<h2>Lesson 4: Pedagogical Implications and Inclusive Canons in 21st Century World Literature</h2>
+            <p>Applying insights from 21st-century world literature and canon formation to teaching requires bold, inclusive strategies that mirror the field's global dynamism. This reading equips educators—particularly in diverse Philippine classrooms like those in Quezon City public schools or university ESP programs—with tools to foster critical literacy. By questioning traditional hierarchies and embracing hybrid voices, teachers can empower students to navigate an interconnected world, blending local narratives with transnational ones for deeper empathy and analytical skills.<br><br>Start with curation: Build reading lists that disrupt Eurocentric canons. Pair National Artist Bienvenido Lumbera's adaptations of the Visayan epic Hinilawod—with its animistic spirits and heroic quests—with Chimamanda Ngozi Adichie's Americanah (2013). This juxtaposition highlights hybridity: Hinilawod's oral traditions echo Adichie's blog-style reflections on migration and identity. Use metrics like JSTOR citation counts or Google Scholar trends to justify selections; for instance, Adichie's works surpass Austen's in recent humanities citations, signaling canon shifts. In the Philippines, incorporate F. Sionil José's Rosales Saga alongside Latin American magical realism like Isabel Allende's The House of the Spirits, prompting discussions on postcolonial parallels.<br><br>Differentiated instruction, as theorized by Carol Ann Tomlinson, is pivotal for diverse learners. Visual learners craft Canva timelines tracing canon evolution—from Dante's 14th-century dominance to Mo Yan's 2012 Nobel elevation of Chinese fiction. Auditory students produce podcasts analyzing Bob Dylan's Nobel-winning lyrics against traditional poetry, questioning "What makes literature?" Kinesthetic groups role-play canon gatekeepers (publishers, festivals) debating a fictional Tagalog novel's inclusion. For advanced ESL students, assign translation exercises: Render a Hinilawod excerpt into "foreignized" English, preserving rhythmic strangeness per Lawrence Venuti.<br><br>Incorporate debates on inclusivity to model critical thinking. Feminist and queer interventions, like Sara Ahmed's The Cultural Politics of Emotion (2004), push intersectional canons. Launch #OwnVoices Twitter threads (adapted for classroom Edmodo forums): Students nominate underrepresented authors, such as Filipino queer writer Charlson Ong or Kenyan Ngugi wa Thiong'o. Discuss how digital platforms like Wattpad democratize access—Philippine Wattys winners like She's Dating the Gangster rival global bestsellers—yet algorithms perpetuate English biases.<br><br>Address economic critiques head-on. The $143 billion global book market (Statista 2023) sees conglomerates like Penguin Random House "exoticize" non-Western works for profit, packaging Adichie as the "African storyteller." Assign case studies: Compare Mo Yan's state-aligned Nobel backlash with independent presses publishing Swahili sci-fi. Students graph data from Index Translationum, revealing 80% Euro-American dominance, then propose "fair trade literature" initiatives, like supporting local publishers at the Ilocandia International Writers' Workshop.<br><br>Diane Larsen-Freeman's grammaring framework integrates seamlessly: Analyze hybrid syntax in transnational texts—Adichie's Nigerian English pidgins teach dynamic language use over rigid rules. For assessments, craft multiple-choice on canon gatekeepers (e.g., "Which influences Mo Yan's canonicity? A) Sales B) Politics C) Both") and essays like "How does digital dissemination challenge traditional canons?"<br><br>Tech tools enhance engagement. Google Drive for collaborative annotations; YouTube for virtual field trips to Jaipur Festival panels. In low-resource settings, offline apps like Epic! provide diverse e-books.<br><br>Challenges include digital divides—rural Philippine students lag in Wattpad access—but solutions abound: Print excerpts, community library partnerships. Success metrics: Pre/post quizzes on canon biases show 30% gains in critical awareness (adaptable from JSTOR studies).<br><br>Ultimately, these strategies transform classrooms into canon-forming spaces. Students emerge as global citizens, questioning power in texts and life, essential for 21st-century literacy.<br><br>Video: David Damrosch's "Teaching World Literature" (Harvard lecture excerpt, 10 min, YouTube: https://www.youtube.com/watch?v=wsIscgIq9tE). It offers practical syllabus tips, ideal for sparking teacher discussions.<br><br></p>`
+        }
+    ];
+
+    // MODULE 4 content
+    const module4Modules = [
+        {
+            id: "m4_1",
+            title: "Lesson 1: The Essence of Poetry in 21st-Century Literature",
+            content: `<h2>Lesson 1: The Essence of Poetry in 21st-Century Literature</h2>
+            <p>Poetry has long been humanity's most distilled form of expression, compressing vast emotions, histories, and philosophies into rhythmic, image-rich lines. Unlike prose's steady narrative flow, poetry thrives on ambiguity, sound, and silence—inviting readers to fill gaps with their own experiences. In the 21st century, it evolves beyond traditional rhyme and meter, embracing free verse, hybrid forms, and multimedia elements. Poets now wield language as a scalpel, dissecting personal trauma, cultural displacement, and identity amid globalization. Key features include vivid imagery (sensory details that paint mental pictures), metaphor (comparisons that reveal hidden truths), and enjambment (lines breaking mid-thought to mimic breath or interruption). Rhythm pulses through assonance (vowel echoes) and alliteration (consonant repetitions), while lineation—the deliberate shaping of lines—controls pace and emphasis..<br><br>This immediacy makes poetry ideal for diverse classrooms, where students from varied backgrounds can perform it aloud, uncovering layers through voice and gesture. Contemporary poetry often engages "prophetic address," a technique where speakers invoke ancestors or future selves, blending personal testimony with communal memory. It adapts to digital spaces too—slam poetry at open mics or online, prioritizing orality over the printed page. Synesthesia, blending senses (e.g., tasting colors or hearing scents), heightens emotional intensity, turning abstract pain into tangible sensation..<br><br>Ocean Vuong exemplifies this evolution. Born in Saigon in 1988 to a Vietnamese refugee family, Vuong's work refracts the Vietnamese-American experience through queer and bodily lenses. His debut collection, Night Sky with Exit Wounds (2016), layers elegy and history in poems that fuse personal loss with global events. Consider "Aubade with Burning City," where the Fall of Saigon in 1975 collides with the Burning Man festival's chaotic revelry. The poem opens with napalm's acrid scent mingling with disco beats: "The radio says run / a white girl’s voice / over the rotary phone." Synesthesia evokes napalm as "disco light," transforming war's horror into a feverish dance. Vuong's lines break jaggedly, mimicking shrapnel—enjambment propels readers through fragmented memories of his mother's escape and his own queer awakening..<br><br>Vuong's prophetic address shines in invocations to his grandmother or unborn kin, positioning poetry as a bridge across generations. In Time Is a Mother (2022), he grapples with maternal loss after his mother's death from cancer. "Dear Rose" uses the rose motif—thorny yet blooming—to symbolize generational trauma: "You were born to be buried," he writes, addressing both his mother and inherited wounds. The poem's short lines and repetitions create a heartbeat rhythm, urging embodiment; students might recite it chorally to feel its pulse..<br><br>Video: Vuong reading "Aubade with Burning City" at the Academy of American Poets: https://www.youtube.com/watch?v=ZiVvQvvIPY4 . His soft timbre underscores the poem's intimacy.Beyond Vuong, Asian and global contexts enrich this form. Philippine slam poetry scenes, vibrant in Manila's open mics, echo Vuong's orality—poets like Gem Semacio blend Tagalog and English for social critique. Layli Long Soldier's Whereas (2017), from a Native American perspective, responds to U.S. government apologies with fragmented clauses, mirroring bureaucratic erasure. These works demand performance: in classrooms, have students annotate lines for imagery, then improvise spoken-word responses..<br><br>Poetry's power lies in its adaptability to trauma and identity politics. It sidesteps linear storytelling for visceral immediacy, fostering empathy in diverse learners. Educators can leverage it for differentiated instruction—visual learners map metaphors, auditory ones record readings, kinesthetic ones stage "poetry slams." As Vuong notes, "Poetry is a place to unlearn." This unlearning invites students to question inherited narratives, making 21st-century poetry a vital tool for emotional and cultural literacy.</p>`
+        },
+        {
+            id: "m4_2",
+            title: "Lesson 2: Drama's Vitality and Innovation Today",
+            content: `<h2>Lesson 2: Drama's Vitality and Innovation Today</h2>
+            <p>Drama, at its core, is literature brought to life through bodies in space—dialogue, stage directions, and audience interaction creating shared catharsis. Rooted in ancient Greek tragedy and Elizabethan spectacle, 21st-century drama innovates with meta-theatrics (plays about plays), verbatim techniques (using real transcripts), and hybrid forms blending novelistic prose with script. It captures societal dialogues on privilege, conflict, and belonging, often breaking the fourth wall to implicate viewers. Key elements include monologue (solo speeches revealing psyche), dialogue (clashing voices driving conflict), and scenography (sets and props amplifying themes). Contemporary plays favor brevity—short, punchy scenes—for global festivals—and gamification, turning audiences into players..<br><br>This form excels in performance-based learning, where diverse classrooms stage scenes to embody "otherness." Verbatim theatre, drawing from interviews or inquiries, lends authenticity; meta-theatrics dismantles power structures, questioning who's telling whose story. Trauma and identity politics fuel these experiments, with playwrights using fragmented timelines or direct address to mirror real-world chaos..<br><br>Young Jean Lee's Straight White Men (2014) interrogates privilege through a gamified family Christmas. Three brothers and their father play a board game that enforces "rules" of whiteness—penalties for "taking up space." Meta-theatrics erupt when actors (often non-white) step out of character, debating the play's purpose: "This is a play about straight white men... written by a woman of color." Dialogue snaps with humor and tension, exposing how privilege masquerades as normalcy. Stage directions call for exaggerated gestures, heightening absurdity..<br><br>Caryl Churchill's Seven Jewish Children (2009), a 10-minute play, condenses the Israeli-Palestinian conflict into seven monologues from parents to a girl. Each builds chronologically: "Tell her there's a war," evolves to "Don't tell her it was an Arab who killed her brother." The rapid shifts spark ethical debates—global stagings ignite controversy, proving drama's power to provoke. Churchill's minimalism— no sets, just voices—forces focus on words..<br><br>Video: https://youtu.be/Ese-NpnxwWE?si=K99k-UNHC-vej9vL. The raw delivery amplifies its urgency.Athol Fugard and Wole Soyinka extend this to African contexts. Fugard's post-apartheid works like Master Harold... and the Boys evolve into Soyinka's Chronicles from the Land of the Happiest People on Earth (2021), a novel-play hybrid satirizing corruption via courtroom scenes. Verbatim elements from Nigerian news heighten realism..<br><br>Ocean Vuong bridges poetry and drama; his novel On Earth We're Briefly Gorgeous (2019)—epistolary and poetic—inspires stage adaptations. Its Little Dog narrates queer Vietnamese-American trauma in monologues ripe for solo performance..<br><br>Drama globalizes at festivals like Edinburgh Fringe, where Philippine plays echo these tensions. In classrooms, assign scene improvisations: diverse groups rotate roles in Straight White Men to explore privilege kinesthetically. This embodied approach suits ESP learners, building fluency through dialogue..<br><br>Drama vivifies urgencies, demanding we confront complicity. It transforms passive reading into active witness.</p>`
+        },
+        {
+            id: "m4_3",
+            title: "Lesson 3: Intersections of Poetry and Drama in Global Contexts",
+            content: `<h2>Lesson 3: Intersections of Poetry and Drama in Global Contexts</h2>
+            <p>Poetry and drama increasingly overlap in 21st-century literature, creating hybrid forms that speak to urgent questions of identity, memory, migration, and power. Poetry brings intensity, compression, and musicality, while drama adds voice, confrontation, and embodied performance. When these forms meet, literature becomes both intimate and communal: it can sound like a private confession and also function as a public act of witnessing. This convergence is especially significant in contemporary world literature because many writers use it to represent displacement, grief, racial violence, queer identity, colonial aftermath, and the search for belonging..<br><br>One reason this fusion matters is that poetry and drama both depend on voice. In poetry, the speaking voice may be lyrical, fragmentary, or deeply personal; in drama, voice becomes dialogue, monologue, or silence staged before an audience. When poets borrow dramatic techniques, their work gains theatrical energy through direct address, repeated speech, and scene-like movement. When playwrights borrow poetic language, their scripts gain rhythm, image, and emotional depth. As a result, the boundaries between page and stage become less rigid. Readers are invited not only to interpret meaning but also to imagine how language sounds, moves, and lands in the body..<br><br>This hybrid quality is often tied to embodied engagement, a concept that helps explain why poetry-drama combinations are so effective in classrooms and public performance. Instead of treating literature as detached text, embodied engagement asks readers and performers to inhabit the emotional world of the work. A line of poetry can be spoken as a plea, a memory, or a challenge. A dramatic monologue can carry the condensed power of verse. This is especially important for texts shaped by trauma, since fragmented structure, repetition, and silence can mirror the difficulty of speaking about pain. In this sense, hybrid literary forms do more than describe suffering; they stage the struggle to articulate it..<br><br>Ocean Vuong offers a powerful example of this convergence. His poetry often uses lyric intensity, spare lineation, and prophetic address, meaning that the speaker seems to talk not only to a present listener but also to ancestors, the dead, or a future self. In Time Is a Mother, poems such as “Dear Rose” turn grief into an intimate call across time. The emotional force of the poem comes not only from what is said, but from how it is spoken: the voice feels direct, vulnerable, and urgent, almost like a soliloquy from a stage. Vuong’s poetry is also deeply dramatic in its use of contrast and revelation, allowing memory to unfold in moments rather than in a straight narrative..<br><br>His earlier collection Night Sky with Exit Wounds and his novel On Earth We’re Briefly Gorgeous also show how poetic language can move toward dramatic form. On Earth We’re Briefly Gorgeous is not a play, but its letter-like structure and intimate monologues make it highly performative. The novel reads like a series of spoken confessions, where one voice addresses another across distance, absence, and loss. Because of this, it lends itself well to stage adaptation and classroom performance. Students can read passages aloud as monologues and notice how emotional shifts emerge through pauses, repetition, and image. Vuong’s work is especially resonant for discussions of Vietnamese diaspora, war memory, queer identity, and inherited trauma..<br><br>In the Asian and Philippine context, the relationship between poetry and drama is equally dynamic. Philippine slam poetry, spoken word circles, and festival-based performances already blur the line between written poem and staged act. Many Filipino poets use bilingual or multilingual expression, drawing from English, Filipino, and regional languages to capture social realities more fully. This oral tradition makes poetry feel performative from the start. Meanwhile, contemporary theatrical events such as Virgin Labfest often showcase scripts that sound lyrical, fragmented, or emotionally compressed, creating works that feel halfway between a poem and a play. These forms are especially effective in representing migration, labor, family separation, and diaspora..<br><br>Global writers beyond Vuong also show how poetry and drama interact. Layli Long Soldier’s Whereas uses fragmented poetic structures that often feel like scenes or public statements, responding to official language with artistic counter-voice. The poem sequence transforms apology, policy, and historical violence into a textured literary response. Similarly, work associated with verbatim theatre, such as tribunal plays about the Iraq War, uses real speech and testimony, but arranges it with dramatic pacing and poetic repetition. This creates a tension between factual speech and aesthetic form. The audience is invited to hear official language differently, as something shaped by power, omission, and performance..<br><br>In African literature, Wole Soyinka demonstrates another version of this intersection. His writing often combines dramatic confrontation with elevated, rhythmic language that approaches poetry. In hybrid works such as Chronicles from the Land of the Happiest People on Earth, satire, political critique, and stylized speech overlap. The result is a mode that is theatrical without losing its poetic density. This is important because global literature is not simply about national themes; it is also about formal experimentation. Writers across regions are using hybrid structures to challenge inherited literary categories and to represent complex realities that no single form can fully contain..<br><br>For teaching, this intersection opens many possibilities. One effective activity is to ask students to transform a poem into a dramatic monologue or scene. Another is to have them identify poetic devices in a play, such as repetition, imagery, or rhythm, and discuss how those devices affect performance. These tasks help learners see that literature is not only something to decode on the page but also something to voice, embody, and interpret collaboratively. In diverse classrooms, this approach supports differentiated instruction because students can respond through reading, speaking, acting, or visual mapping..<br><br>A useful video for this topic is Ocean Vuong’s reading and performance of his poetry, which shows how lyric language becomes embodied through voice and pause: <br><iframe width="560" height="315" src="https://www.youtube.com/embed/dVqaEqdwlLQ?si=aemMN5CRs6zyLrtq&amp;start=3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>Ocean Vuong reads from Time Is a Mother. The video is short and accessible, making it suitable for introducing students to the spoken dimension of contemporary poetry. It also helps them hear how emotion, silence, and rhythm work together in performance..<br><br>Ultimately, the intersection of poetry and drama in global contexts reflects the realities of the 21st century itself: fractured, multilingual, mobile, and intensely political. These forms give shape to voices that have often been excluded from dominant literary traditions. They also remind us that literature is not confined to genre boundaries. It lives in speech, gesture, memory, and audience response. For educators, this makes poetry-drama hybrid texts valuable tools for developing critical reading, cultural awareness, and empathy.</p>`
+        }
+    ];
+
+    // MODULE 5 content
+    const module5Modules = [
+        {
+            id: "m5_1",
+            title: "Lesson 1: Introducing Poetry as Cultural Anchor",
+            content: `<h2>Lesson 1: Introducing Poetry as Cultural Anchor</h2>
+            <p>Poetry, one of the oldest literary forms, serves as a cultural anchor, distilling heritage into rhythmic language that resists erasure. Unlike prose's expansive narratives, poetry compresses indigenous wisdom, myths, and oral traditions into vivid imagery and sound patterns, making it ideal for exploring cultural rootedness. In Asian, African, and Latin American voices, poetry embodies "glocalization"—local epistemologies infused into global dialogues. It preserves endangered languages, rituals, and worldviews, fostering cultural literacy essential for 21st-century curricula, including Philippine education's blend of local and global perspectives.<br><br>At its core, poetry roots itself in orature, the spoken-word heritage predating written texts. In Asia, this manifests in haiku's seasonal impermanence or Sanskrit slokas' philosophical cadence, echoing ancestral chants. African poetry draws from griot traditions—storytellers who weave history through call-and-response rhythms. Latin American verse pulses with négritude influences, blending Indigenous rhythms with colonial echoes. These forms prioritize sound over syntax: assonance mimics river flows, alliteration evokes communal drums, and metaphor bridges the spiritual and material. Poetry's brevity demands precision, layering meanings that reveal cultural resistance against homogenization.<br><br>Consider poetry's structural elements as tools of rootedness. Stanzas mirror communal gatherings; enjambment simulates life's unbroken flow amid disruption. In colonized contexts, poets subvert European meters—iambic pentameter yields to syncopated pidgin or tonal inflections. This "decolonizing" impulse aligns with Frantz Fanon's ideas of reclaiming narrative agency. For educators, teaching poetry builds empathy: students unpack how a single image, like a baobab tree, symbolizes African resilience or Asian cherry blossoms mark impermanence.<br><br>Poetry also engages the senses, invoking synesthesia—colors heard, scents rhymed—to immerse readers in cultural landscapes. Rituals infuse lines: Hindu festivals in Rabindranath Tagore's works or Yoruba invocations in contemporary African verse. This sensory rootedness counters Western individualism, emphasizing collective memory. In classrooms, poetry's accessibility suits diverse learners; Tomlinson's differentiated instruction shines here, with visual aids for visual learners or recitation for kinesthetics.<br><br>Transitioning from theory, poetry's power lies in its evolution. Pre-colonial epics morphed into modern resistance verse, adapting to globalization without losing essence. Now, with this foundation, explore how Asian voices exemplify poetry's role before examining prose parallels in Yoko Tawada and Arundhati Roy.<br><br>In Asia, poetry reclaims mythologies, infusing folklore with contemporary urgency. Japanese tanka, with its 5-7-5-7-7 syllable structure, captures waka traditions of nature's ephemerality. Tawada's poetic sensibility in The Emissary (2014, trans. 2018) dystopically reimagines folklore amid radiation—children's reversed speech echoes haiku's fragmented beauty, protesting nuclear scars. Roy's The Ministry of Utmost Happiness (2017) weaves Hijra traditions poetically into Delhi's chaos; her prose rhythms mimic Urdu ghazals, lamenting marginalized lives with Sufi ecstasy.<br><br>African poetry throbs with griot pulses. NoViolet Bulawayo's We Need New Names (2013) contrasts Zimbabwean shantytowns with U.S. alienation through pidgin cadences evoking oral epics like the Sundiata. Teju Cole's Open City (2011) peripatetically maps Lagos-NYC via Mahler motifs, its lyricism akin to Igbo praise poems.<br><br>Latin America's neo-baroque poetry flourishes in excess: Bolaño's 2666 (2004) labyrinths femicides with sprawl mirroring sor Juana's metaphysical conceits. Machado's Her Body and Other Parties (2017) queers magical realism; "The Husband Stitch" ribs legends in villanelle-like refrains.<br><br>Philippine echoes abound: Jose Garcia Villa's comma poems innovate rootedness, linking to Syjuco's Ilustrado (2008) satire.<br><br><iframe width="560" height="315" src="https://www.youtube.com/embed/08ZWROqoTZo?si=TpYZiYYeSk-3TJHJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>Video:https://youtu.be/08ZWROqoTZo?si=8jYUfXyUZoKJC0Qm – Explains poetry's cultural depth with global examples, perfect for introducing its anchoring role (pairs well with Asian/African forms).</p>`
+        },
+        {
+            id: "m5_2",
+            title: "Lesson 2: Drama as Embodied Cultural Dialogue",
+            content: `<h2>Lesson 2: Drama as Embodied Cultural Dialogue</h2>
+            <p>Drama, the theatrical art of embodied storytelling, transforms cultural rootedness into live performance, where bodies, voices, and spaces enact heritage. Distinct from poetry's introspection, drama demands communal participation—actors channel ancestors, stages become sacred grounds. In Asian, African, and Latin American traditions, it resists cultural homogenization by staging indigenous rituals, colonial critiques, and hybrid identities, vital for Philippine curricula fostering global-local literacy.<br><br>Drama's essence lies in its dialogic structure: characters clash, mirroring societal tensions. Rooted in ritual theater—like Noh's masked spirits or Yoruba egungun masquerades—it blurs performer-audience lines. Brechtian alienation effects heighten awareness, while Stanislavskian realism grounds myths in everyday strife. Culturally, drama preserves epistemologies: Asian shadow puppetry (wayang kulit) narrates Ramayana epics; African market plays satirize power; Latin American teatro campesino amplifies peasant voices. This form's ephemerality—live, unrepeatable—echoes oral traditions, countering print culture's fixity.<br><br>Key elements amplify rootedness. Dialogue weaves pidgin or creole, preserving linguistic diversity. Props symbolize heritage—a bamboo pole for Filipino tinikling or Aztec feathers. Lighting evokes monsoons or savanna sunsets, soundscapes layer drums with monologues. In glocal frames, drama hybridizes: Bollywood musicals fuse Kathak dance with Shakespeare, August Wilson's cycles blues-ify Greek tragedy. For diverse learners, drama suits kinesthetic engagement, aligning with differentiated instruction.<br><br>Historically, drama evolves from rite to resistance. Pre-colonial village performances yielded post-colonial theaters decrying imperialism. Today, it tackles migration, echoing module themes.<br><br>With foundations set, see drama's infusion in Asian voices before novel examples.<br><br>Asian drama reclaims mythologies dramatically. Kabuki's exaggerated poses and Noh's slow chants embody folklore; Tawada's The Emissary stages dystopian folklore—reversed child speech mimics bunraku puppets, radiating protest. Roy's Ministry dramatizes Hijra lives like kathakali epics, Delhi's underbelly a proscenium of despair.<br><br>African drama pulses orature. Marketplace skits evolve into plays like Wole Soyinka's; Bulawayo's We Need New Names dramatizes shantytown alienation in pidgin soliloquies, griot-like. Cole's Open City perambulates like a Lagos street theater, Mahler a tragic chorus.<br><br>Latin neo-baroque drama sprawls: Bolaño's 2666 femicide labyrinth evokes Vallejo's surrealist pageants. Machado's stories theatricalize legends—"Husband Stitch" a ribald commedia dell'arte.<br><br>Philippine ties: F. Sionil José's plays link to Syjuco's satire; Asymptote translations stage global voices.<br><br><iframe width="560" height="315" src="https://www.youtube.com/embed/LEN8FZEKaNU?si=htEmh8as_6xDfp0R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>Video: https://youtu.be/LEN8FZEKaNU?si=VBdUtIjusexT9NII</p>`
+        },
+        {
+            id: "m5_3",
+            title: "Lesson 3: Poetry and Drama in Asian Voices",
+            content: `<h2>Lesson 3: Poetry and Drama in Asian Voices</h2>
+            <p>Building on poetry and drama's roles as cultural anchors, Asian voices in Module 5 exemplify rootedness by reclaiming mythologies against erasure. These regions infuse global narratives with indigenous epistemologies—Shinto animism, Sufi mysticism—via poetic compression and dramatic embodiment. Yoko Tawada's The Emissary (2014, trans. 2018) dystopically reimagines Japanese folklore amid radiation, grounding apocalypse in local lore through haiku-like fragments and Noh staging. Arundhati Roy's The Ministry of Utmost Happiness (2017) weaves Hijra traditions into Delhi's underbelly, ghazal rhythms and kathakali vignettes resisting homogenization.<br><br>Tawada's poetic craft poeticizes reversal: post-Fukushima children speak backward, syllables inverting like tanka mirrors, evoking fragility. Glowing fish imagery nods to folktales of yokai spirits, metaphors anchoring nuclear horror in Shinto animism—every irradiated creature pulses kami essence. Historically, this echoes Heian waka poets like Izumi Shikibu, who layered personal loss with cosmic impermanence; Tawada updates it for Anthropocene dread. Dramatically, the father-son duo enacts Noh tragedy: grandfather Yoshiro's wanderings mimic yūrei processions, masked by frailty, bodies embodying communal loss. Slow pacing builds alienation, Brechtian pauses inviting reflection on generational trauma.<br><br>Roy's prose sings Urdu ghazals—stanzaic Hijra lives pulse Sufi ecstasy amid decay, refrains like "utmost happiness" ironic couplets lamenting marginality. "Anjum's funeral" vignette dramatizes kathakali excess: exaggerated mudras satirize bureaucracy, trans bodies mud-caked in ritual defiance. Pidgin dialogues mimic Delhi street theater (nautanki), glocalizing transgender struggles—Hijra blessings clash with neoliberal sprawl. Contextually, Roy draws from Partition-era qawwalis, subverting Bollywood gloss for gritty realism.<br><br>These techniques infuse glocalization: myths in dystopian frames, preserving epistemologies. Pedagogically, for Philippine ESP classrooms, assign haiku responses to Tawada excerpts—differentiated for diverse learners (visual mind maps for visuals, recitations for auditives). Tomlinson's strategies shine: scaffold Roy's pidgin with glossaries, linking to Filipino swardspeak. Philippine parallel: Miguel Syjuco's Ilustrado (2008) satirizes elite rootedness poetically, its fragmented elegies echoing Tawada, mocking oligarchs like Rizal's Noli.<br><br>Close reading Tawada's opening: "The boy's words flowed backward from his mouth" layers reversal as poetic device, dramatic irony underscoring silenced youth. Roy's "graveyard beauty parlor" fuses ghazal wit with theatrical absurdity, queering urban legends.<br><br>Video: https://youtu.be/_zN7o0qL10g?si=epoejAkzH7U3raNK</p>`
+        },
+        {
+            id: "m5_4",
+            title: "Lesson 4: Poetry and Drama in African/Latin American Voices",
+            content: `<h2>Lesson 4: Poetry and Drama in African/Latin American Voices</h2>
+            <p>Extending poetry and drama foundations, African and Latin American voices pulse rootedness into Module 5 narratives, blending orature with neo-baroque flair against global erasure. NoViolet Bulawayo's We Need New Names (2013) contrasts Zimbabwean shantytowns with U.S. alienation via pidgin griot rhythms, poetic staccato evoking oral epics. Teju Cole's Open City (2011) peripatetically maps Lagos-NYC, Mahler motifs lyricizing migrant drift. Roberto Bolaño's 2666 (2004) labyrinths Mexican femicides in encyclopedic sprawl; Carmen Maria Machado's Her Body and Other Parties (2017) queers magical realism theatrically.<br><br>Bulawayo poeticizes poverty—staccato lines like Shona praise songs (madetendere) fragment shantytown life: "We are Darling and Bastard and Chipo," call-response naming communal bonds. Historical roots in griot traditions (Sundiata epic) pulse against Rhodesian scars, pidgin subverting English hegemony. Dramatically, border-crossing vignettes stage market skits—gunshots punctuate monologues like Soyinka's Death and the King's Horseman, bodies fleeing as tragic chorus.<br><br>Cole's wanderings yield dramatic monologues, Mahler arias internalized amid Lagos bustle; poetic perambulation mirrors Igbo mbari houses, encyclopedic detours glocalizing alienation. Bolaño's sprawl deploys sor Juana conceits—femicide section a baroque pageant, endless names litany evoking Aztec codices amid cartel horror. Machado's "The Husband Stitch" theatricalizes ribald skits, urban legends queered in commedia dell'arte refrains: green ribbon a fetishistic prop, magical realism pulsing négritude rhythms.<br><br>Glocal manifestations abound: orature in diaspora frames, resisting homogenization. Pedagogically, for Philippine classrooms, craft multiple-choice assessments on Bulawayo's pidgin (e.g., "Identify griot rhythm"); use PowerPoint with hyperlinked audio for diverse learners. Link to Larsen-Freeman's grammar tasks: analyze Cole's motifs. Philippine hubs like Asymptote amplify these; Syjuco's satire echoes Bolaño's sprawl.<br><br>Close reading Bulawayo: "No more thieving, no more hunger" praisesong flips scarcity into defiance. Cole's Mahler: "The adagio swelled" lyricizes psychic exile. Bolaño's "The Part About the Crimes" sprawls 300 pages, dramatic tension in absence. Machado's stitch: "Give me back my ribbon" theatrical climax.<br><br><iframe width="560" height="315" src="https://www.youtube.com/embed/HpdC-gl0oig?si=BwaFrKfsDDlQJkGI&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>Video: https://youtu.be/HpdC-gl0oig?si=oOVRxgnBWT6E3dX4</p>`
+        }
+    ];
 
     // MODULE 3 content - placeholder for now
     const module3Modules = [
@@ -661,7 +745,22 @@
     const contentDiv = document.getElementById('dynamicContent');
 
     function render() {
-        if (currentView === 'midtermList') {
+        if (currentView === 'module1List') {
+            contentDiv.innerHTML = renderModuleList(module1Modules, 'Module 1');
+            attachModuleItemListeners('m1');
+        }
+        else if (currentView === 'module1Detail' && currentModuleData) {
+            contentDiv.innerHTML = renderModuleDetail(currentModuleData, 'Module 1');
+            document.getElementById('backToListBtn')?.addEventListener('click', () => {
+                currentView = 'module1List';
+                render();
+            });
+        }
+        else if (currentView === 'module1Activities') {
+            window.currentModule = 1;
+            renderActivitiesPage(1);
+        }
+        else if (currentView === 'midtermList') {
             contentDiv.innerHTML = renderModuleList(midtermModules, 'Midterm');
             attachModuleItemListeners('mid');
         } 
@@ -682,6 +781,36 @@
                 currentView = 'module3List';
                 render();
             });
+        }
+        else if (currentView === 'module4List') {
+            contentDiv.innerHTML = renderModuleList(module4Modules, 'Module 4');
+            attachModuleItemListeners('m4');
+        }
+        else if (currentView === 'module4Detail' && currentModuleData) {
+            contentDiv.innerHTML = renderModuleDetail(currentModuleData, 'Module 4');
+            document.getElementById('backToListBtn')?.addEventListener('click', () => {
+                currentView = 'module4List';
+                render();
+            });
+        }
+        else if (currentView === 'module4Activities') {
+            window.currentModule = 4;
+            renderActivitiesPage(4);
+        }
+        else if (currentView === 'module5List') {
+            contentDiv.innerHTML = renderModuleList(module5Modules, 'Module 5');
+            attachModuleItemListeners('m5');
+        }
+        else if (currentView === 'module5Detail' && currentModuleData) {
+            contentDiv.innerHTML = renderModuleDetail(currentModuleData, 'Module 5');
+            document.getElementById('backToListBtn')?.addEventListener('click', () => {
+                currentView = 'module5List';
+                render();
+            });
+        }
+        else if (currentView === 'module5Activities') {
+            window.currentModule = 5;
+            renderActivitiesPage(5);
         }
         else if (currentView === 'activities') {
             window.currentModule = 2;
@@ -707,9 +836,21 @@
                     currentModuleData = midtermModules[idx];
                     currentView = 'midtermDetail';
                 }
+                else if (section === 'm1') {
+                    currentModuleData = module1Modules[idx];
+                    currentView = 'module1Detail';
+                }
                 else if (section === 'm3') {
                     currentModuleData = module3Modules[idx];
                     currentView = 'module3Detail';
+                }
+                else if (section === 'm4') {
+                    currentModuleData = module4Modules[idx];
+                    currentView = 'module4Detail';
+                }
+                else if (section === 'm5') {
+                    currentModuleData = module5Modules[idx];
+                    currentView = 'module5Detail';
                 }
                 render();
             });
@@ -717,18 +858,38 @@
     }
 
     // Sidebar navigation
+    const module1Nav = document.getElementById('module1Nav');
+    const module1ActivitiesNav = document.getElementById('module1ActivitiesNav');
     const midtermNav = document.getElementById('midtermNav');
     const activitiesNav = document.getElementById('activitiesNav');
     const module3Nav = document.getElementById('module3Nav');
     const module3ActivitiesNav = document.getElementById('module3ActivitiesNav');
+    const module4Nav = document.getElementById('module4Nav');
+    const module4ActivitiesNav = document.getElementById('module4ActivitiesNav');
+    const module5Nav = document.getElementById('module5Nav');
+    const module5ActivitiesNav = document.getElementById('module5ActivitiesNav');
     const submissionsNav = document.getElementById('submissionsNav');
     
 
     function setActiveNav(active) {
-        [midtermNav, activitiesNav, module3Nav, module3ActivitiesNav, submissionsNav].forEach(nav => nav.classList.remove('active'));
+        [module1Nav, module1ActivitiesNav, midtermNav, activitiesNav, module3Nav, module3ActivitiesNav, module4Nav, module4ActivitiesNav, module5Nav, module5ActivitiesNav, submissionsNav].forEach(nav => nav.classList.remove('active'));
         active.classList.add('active');
     }
 
+    module1Nav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(module1Nav);
+        currentView = 'module1List';
+        currentModuleData = null;
+        render();
+    });
+    module1ActivitiesNav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(module1ActivitiesNav);
+        currentView = 'module1Activities';
+        currentModuleData = null;
+        render();
+    });
     midtermNav.addEventListener('click', (e) => {
         e.preventDefault();
         setActiveNav(midtermNav);
@@ -757,6 +918,34 @@
         currentModuleData = null;
         render();
     });
+    module4Nav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(module4Nav);
+        currentView = 'module4List';
+        currentModuleData = null;
+        render();
+    });
+    module4ActivitiesNav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(module4ActivitiesNav);
+        currentView = 'module4Activities';
+        currentModuleData = null;
+        render();
+    });
+    module5Nav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(module5Nav);
+        currentView = 'module5List';
+        currentModuleData = null;
+        render();
+    });
+    module5ActivitiesNav.addEventListener('click', (e) => {
+        e.preventDefault();
+        setActiveNav(module5ActivitiesNav);
+        currentView = 'module5Activities';
+        currentModuleData = null;
+        render();
+    });
     submissionsNav.addEventListener('click', (e) => {
     e.preventDefault();
     setActiveNav(submissionsNav);
@@ -766,6 +955,47 @@
     });
     // ---------- ACTIVITIES DATA (5 activities) ----------
 const lessonData = [
+{
+  id: 1,
+  title: "Quiz",
+  components: [
+    {
+      category: "Quiz",
+      title: "Quiz 1",
+      objective: "Answer the quiz in the google forms use the link to access the link",
+      instructions: "QUIZ 1: Answer the quiz in the google forms use the link to access the link https://forms.gle/x3xk4EPeCkxMwRPJ7",
+      output: "Submit via lms."
+    }
+  ]
+},
+{
+    id: 2,
+    title: "Forum",
+    components: [
+    {
+      category: "Forum",
+      title: "Forum 1",
+      objective: "To encourage critical thinking and discussion on the relevance of traditional literary canons versus more diverse and global texts.",
+      instructions: "Post your answer (150–200 words).\nRespond to at least two classmates with meaningful insights (minimum 50 words each).\nUse examples from the lessons (e.g., translation, digital platforms, or global authors).",
+      output: "Submit via lms."
+    }
+  ]
+},
+{
+    id: 3,
+    title: "Assignment",
+    components: [
+    {
+      category: "Assignment",
+      title: "Assignment 1: Mapping World Literature in a Globalized Era",
+      objective: "To develop students’ ability to connect globalization and world literature to their personal context while reflecting on canon formation and the role of digital platforms in promoting inclusivity.",
+      instructions: "1. How does globalization influence the themes and circulation of world literature today?\n2. Choose one text/author mentioned in the module (e.g., Americanah, Severance, or a Filipino writer). What issue does it highlight (migration, identity, technology, etc.)?\n3. How does canon formation affect which texts are read in schools?\n4. In your opinion, how can digital platforms (e.g., Wattpad, Goodreads) help democratize literature?\n5. As a student, how would you build a more inclusive literary canon?",
+      output: "Typed essay (500–700 words)\nSubmit via Google Forms"
+    }
+  ]
+}
+];
+const lessonData2 = [
 {
   id: 1,
   title: "Module 2 - Lesson 1: The Emergence of Post-9/11 Literature",
@@ -964,6 +1194,77 @@ const lessonData3 = [
   ]
 }
 ];
+//MODULE 4 and 5 activities
+
+const lessonData4 = [
+{
+  id: 1,
+  title: "Quiz",
+  components: [
+    {
+      category: "Quiz",
+      title: "Quiz 4",
+      objective: "To evaluate students’ understanding of key concepts related to poetry and drama through an online assessment.",
+      instructions: "Prompt: “How do modern novels reflect the complexities of real-life experiences?”",
+      output: "Submit via lms."
+    }
+  ]
+},
+{
+    id: 2,
+    title: "Forum",
+    components: [
+    {
+      category: "Forum",
+      title: "Forum 4",
+      objective: "How do poetry and drama differently express identity, trauma, or social issues?\nWhich form do you think is more powerful in today’s context, and why?",
+      instructions: "Initial post: 150–200 words\nReply to at least 2 classmates (minimum 75 words each)\nSupport your ideas using concepts from the lessons (e.g., imagery, monologue, prophetic address, performance)",
+      output: "Submit via lms."
+    }
+  ]
+},
+{
+    id: 3,
+    title: "Assignment",
+    components: [
+    {
+      category: "Assignment",
+      title: "Assignment 4: Poetry–Drama Transformation Task",
+      objective: "To enhance students’ creativity and comprehension by transforming literary forms while preserving themes, applying techniques, and demonstrating understanding of both poetry and drama.",
+      instructions: "Choose ONE of the following options:\n\nOption A: Poetry to Monologue\nSelect a short contemporary poem (at least 10–20 lines). Rewrite it into a dramatic monologue (300–500 words).\n1. Maintain the original theme (e.g., identity, trauma, memory)\n2. Turn poetic elements (imagery, metaphor, enjambment) into spoken expression\n3. Include stage directions (e.g., pauses, tone, gestures)\n\nOption B: Dramatic Scene to Poetic Form\nSelect a short dramatic scene or dialogue (at least 1–2 pages). Rewrite it into a free verse poem (20–30 lines).\n1. Use imagery, metaphor, repetition, and line breaks\n2. Retain the central conflict or message\n3. Show emotional intensity through poetic techniques",
+      output: "Submit via lms."
+    }
+  ]
+}
+];
+const lessonData5 = [
+{
+  id: 1,
+  title: "Quiz",
+  components: [
+    {
+      category: "Quiz",
+      title: "Quiz 5",
+      objective: "To assess students’ understanding of concepts related to cultural expression in poetry and drama through an online quiz.",
+      instructions: "Answer the quiz via Google forms using the link below\nLink: https://forms.gle/59xH2EzTAi2Tx28v9",
+      output: "Submit via lms."
+    }
+  ]
+},
+{
+    id: 2,
+    title: "Forum",
+    components: [
+    {
+      category: "Forum",
+      title: "Forum 5",
+      objective: "Which form do you think is more effective in preserving and expressing cultural rootedness—poetry or drama? Why?",
+      instructions: "1. Write 150–250 words\n2. Use at least one example from the module\n3. Reply to at least one classmate with a meaningful response (minimum 50 words)",
+      output: "Submit via lms."
+    }
+  ]
+}
+];
 
 
 // Local storage key
@@ -997,8 +1298,21 @@ function escapeHtml(str) {
 
 function renderActivitiesPage(module = 2) {
     const submissionsMap = loadSubmissions(); // keys like "lesson-1"
-    const data = module === 3 ? lessonData3 : lessonData;
-    const title = module === 3 ? 'MODULE 3: Activities' : 'MODULE 2: Activities';
+    let data = lessonData2;
+    let title = 'MODULE 2: Activities';
+    if (module === 3) {
+        data = lessonData3;
+        title = 'MODULE 3: Activities';
+    } else if (module === 1) {
+        data = lessonData;
+        title = 'MODULE 1: Activities';
+    } else if (module === 4) {
+        data = lessonData4;
+        title = 'MODULE 4: Activities';
+    } else if (module === 5) {
+        data = lessonData5;
+        title = 'MODULE 5: Activities';
+    }
     
     let html = `<div class="activities-header">
                     <h2><i class="fas fa-clipboard-list"></i> ${title}</h2>
@@ -1107,7 +1421,7 @@ function attachComponentEventListeners() {
 function createActivitiesList() {
     const allActivities = [];
     let activityId = 1;
-    const allLessons = [...lessonData, ...lessonData3];
+    const allLessons = [...lessonData2, ...lessonData3, ...lessonData4, ...lessonData5];
     allLessons.forEach(lesson => {
         allActivities.push({
             id: activityId,
@@ -1217,22 +1531,6 @@ function loadAllStudentSubmissions() {
                     defaultSubs[student.id][8] = { text: `Assessment\n\nShort stories are powerful because they deliver meaningful messages in a short amount of time. They often focus on important moments, making them easy to understand and remember.\n\nAssignment\n\nCarlos walked home alone after a long day at school. He felt tired and discouraged after failing a test. As he walked, he thought about giving up.\nHowever, when he reached home, his mother encouraged him to try again. Her words gave him hope. Carlos realized that failure was not the end but a chance to improve. From that day on, he worked harder and believed in himself.`, timestamp: "2025-04-13 13:45" };
                 } else if (student.id === "STU005") {
                     defaultSubs[student.id][8] = { text: `Assessment\n\nShort stories are effective because they use simple yet meaningful storytelling. Their short length allows readers to quickly understand the message while still feeling its emotional impact.\n\nAssignment\n\nLena loved drawing, but she was afraid to show her work to others. She worried that people might judge her.\nOne day, her teacher encouraged her to join an art contest. Although she was nervous, Lena decided to try. When she shared her artwork, she received positive feedback. This experience helped her gain confidence and believe in her talent.`, timestamp: "2025-04-13 14:15" };
-                }
-            }
-            else if (actId === 9) {
-                if (student.id === "STU003") {
-                    defaultSubs[student.id][9] = { text: `Jared's short story: A meaningful life experience...`, timestamp: "2025-04-13 15:20" };
-                } else if (student.id === "STU004") {
-                    defaultSubs[student.id][9] = { text: `Tiffany's short story: Emotional impact through simple language...`, timestamp: "2025-04-13 13:45" };
-                }
-            }
-            else if (actId === 10) {
-                if (student.id === "STU003") {
-                    defaultSubs[student.id][10] = { text: `Jared's final reflection: Literature connects us all...`, timestamp: "2025-04-13 16:00" };
-                } else if (student.id === "STU004") {
-                    defaultSubs[student.id][10] = { text: `Tiffany's closing thoughts: Stories matter in our world...`, timestamp: "2025-04-13 14:30" };
-                } else if (student.id === "STU005") {
-                    defaultSubs[student.id][10] = { text: `Kriskin's final submission: Understanding diverse perspectives...`, timestamp: "2025-04-13 15:45" };
                 }
             }
         }
