@@ -21,99 +21,120 @@
             display: flex;
             min-height: 100vh;
         }
+/* Sidebar Styles */
+.sidebar {
+    width: 280px;
+    background: #1e1e1e;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    transition: 0.3s;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow: hidden;            /* Prevents the entire sidebar from scrolling */
+}
 
-        /* Sidebar Styles */
-        .sidebar {
-            width: 280px;
-            background: #1e1e1e;
-            color: #e0e0e0;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            height: 100vh;
-            left: 0;
-            top: 0;
-            transition: 0.3s;
-            z-index: 1000;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        }
+.logo-container {
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+    flex-shrink: 0;              /* Keeps logo fixed when nav scrolls */
+}
 
-        .logo-container {
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 1px solid #333;
-        }
+.sidebar-logo {
+    width: 100px;
+    background: none;
+    border-radius: 12px;
+    padding: 8px;
+}
 
-        .sidebar-logo {
-            width: 100px;
-            background: none;
-            border-radius: 12px;
-            padding: 8px;
-        }
+.sidebar-nav {
+    flex: 1;                     /* Takes remaining space */
+    overflow-y: auto;            /* Enables vertical scrolling */
+    padding: 20px 0;
+    min-height: 0;               /* Required for flex child to respect overflow */
+}
 
-        .sidebar-nav {
-            flex: 1;
-            padding: 20px 0;
-        }
+/* Optional: custom scrollbar styling */
+.sidebar-nav::-webkit-scrollbar {
+    width: 5px;
+}
+.sidebar-nav::-webkit-scrollbar-track {
+    background: #2c2c2c;
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+}
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
 
-        .sidebar-nav ul {
-            list-style: none;
-        }
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-        .sidebar-nav li {
-            margin: 5px 0;
-        }
+.sidebar-nav li {
+    margin: 5px 0;
+}
 
-        .sidebar-nav a {
-            display: flex;
-            align-items: center;
-            padding: 12px 25px;
-            color: #bbb;
-            text-decoration: none;
-            transition: 0.3s;
-            border-left: 4px solid transparent;
-            font-size: 15px;
-            cursor: pointer;
-        }
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    color: #bbb;
+    text-decoration: none;
+    transition: 0.3s;
+    border-left: 4px solid transparent;
+    font-size: 15px;
+    cursor: pointer;
+}
 
-        .sidebar-nav a i {
-            width: 25px;
-            font-size: 18px;
-            margin-right: 15px;
-        }
+.sidebar-nav a i {
+    width: 25px;
+    font-size: 18px;
+    margin-right: 15px;
+}
 
-        .sidebar-nav li:hover a,
-        .sidebar-nav li.active a {
-            background: #2c2c2c;
-            color: white;
-            border-left-color: white;
-        }
+.sidebar-nav li:hover a,
+.sidebar-nav li.active a {
+    background: #2c2c2c;
+    color: white;
+    border-left-color: white;
+}
 
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid #333;
-        }
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #333;
+    flex-shrink: 0;              /* Keeps logout button fixed at bottom */
+}
 
-        .logout-btn {
-            background: none;
-            border: none;
-            color: #bbb;
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            padding: 12px 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 15px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
+.logout-btn {
+    background: none;
+    border: none;
+    color: #bbb;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    padding: 12px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
 
-        .logout-btn:hover {
-            background: #2c2c2c;
-            color: white;
-        }
+.logout-btn:hover {
+    background: #2c2c2c;
+    color: white;
+}
 
         /* Main Content */
         .main-content {
@@ -319,137 +340,6 @@
     border-radius: 20px;
     margin: 16px 0;
 }
-.submission-area {
-    margin-top: 22px;
-    background: #f8fafc;
-    padding: 18px;
-    border-radius: 24px;
-}
-.submission-text {
-    width: 100%;
-    border-radius: 20px;
-    border: 1px solid #cbd5e1;
-    padding: 14px 18px;
-    font-family: monospace;
-}
-.btn-submit {
-    background: #0f172a;
-    color: white;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 40px;
-    font-weight: 600;
-    margin-top: 14px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-.btn-submit:hover {
-    background: #2c3e66;
-}
-.submission-status {
-    margin-top: 12px;
-    font-size: 0.85rem;
-    background: #e6f7e6;
-    display: inline-block;
-    padding: 5px 12px;
-    border-radius: 30px;
-}
-.saved-preview {
-    background: #f1f5f9;
-    padding: 12px;
-    border-radius: 18px;
-    margin-top: 14px;
-    font-size: 0.85rem;
-}
-.clear-btn {
-    background: #64748b !important;
-}
-/* Submissions table (instructor view) */
-.submissions-table-container {
-    overflow-x: auto;
-    margin-top: 20px;
-    border-radius: 20px;
-    border: 1px solid #e2e8f0;
-    background: white;
-}
-.submissions-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-}
-.submissions-table th {
-    background: #f1f5f9;
-    padding: 14px 12px;
-    text-align: left;
-    font-weight: 600;
-    color: #1e293b;
-    border-bottom: 1px solid #e2e8f0;
-}
-.submissions-table td {
-    padding: 14px 12px;
-    border-bottom: 1px solid #f0f2f5;
-    vertical-align: top;
-    color: #334155;
-}
-.submission-text-preview {
-    max-width: 380px;
-    white-space: pre-wrap;
-    word-break: break-word;
-    background: #f8fafc;
-    padding: 8px 12px;
-    border-radius: 14px;
-    font-size: 0.85rem;
-}
-.badge-missing {
-    background: #f1f5f9;
-    color: #475569;
-    padding: 4px 12px;
-    border-radius: 30px;
-    font-size: 0.75rem;
-    display: inline-block;
-}
-.activity-selector {
-    background: white;
-    border-radius: 40px;
-    padding: 8px 18px;
-    border: 1px solid #cbd5e1;
-    font-weight: 500;
-    margin-right: 15px;
-}
-.btn-demo-reset {
-    background: #334155;
-    color: white;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 40px;
-    cursor: pointer;
-    font-weight: 500;
-}
-.btn-demo-reset:hover {
-    background: #1e293b;
-}
-.flex-between {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 20px;
-}
-/* Modal for viewing full submission */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    overflow: auto;
-}
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto;
@@ -496,6 +386,165 @@
     font-size: 0.8rem;
     margin-top: 10px;
 }
+
+/* Submission area and form styles */
+.submission-area {
+    margin-top: 22px;
+    background: #f8fafc;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.submission-area label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.submission-text {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    padding: 12px 14px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 0.95rem;
+    resize: vertical;
+    min-height: 100px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.submission-text:focus {
+    outline: none;
+    border-color: #0f172a;
+    box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+
+.submission-text::placeholder {
+    color: #94a3b8;
+    font-style: italic;
+}
+
+.btn-submit {
+    background: #0f172a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.btn-submit:hover:not(.clear-btn) {
+    background: #1e293b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(15, 23, 42, 0.2);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+.clear-btn {
+    background: #64748b !important;
+}
+
+.clear-btn:hover {
+    background: #475569 !important;
+}
+
+.submission-status {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e6f7e6;
+    color: #22863a;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border-left: 3px solid #22863a;
+}
+
+.saved-preview {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    border-left: 3px solid #0f172a;
+    color: #475569;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.saved-preview strong {
+    color: #1e293b;
+}
+
+.instruction-box {
+    background: #f8fafc;
+    border-left: 3px solid #0f172a;
+    padding: 12px;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.obj-box {
+    background: #f0f4f8;
+    border-left: 3px solid #3b82f6;
+    padding: 10px 12px;
+    border-radius: 4px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+.component-block {
+    margin-bottom: 16px;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.component-header h4 {
+    margin: 5px 0 0 0;
+    color: #0f172a;
+    font-size: 1rem;
+}
+
+.category-badge {
+    display: inline-block;
+    background: #81d864;
+    color: rgb(255, 255, 255);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.category-badge h2 {
+    margin: 0;
+    font-size: 0.75rem;
+}
+
+.component-separator {
+    margin: 12px 0;
+    border: none;
+    border-top: 1px solid #e2e8f0;
+}
+
     </style>
 </head>
 <body>
@@ -517,7 +566,6 @@
                 <li id="module4ActivitiesNav"><a><i class="fas fa-tasks"></i> MODULE 4: Activities</a></li>
                 <li id="module5Nav"><a><i class="fas fa-book-open"></i> MODULE 5: Cultural Rootedness: Asian, African, Latin American Voices</a></li>
                 <li id="module5ActivitiesNav"><a><i class="fas fa-tasks"></i> MODULE 5: Activities</a></li>
-                <li id="submissionsNav"><a><i class="fas fa-users-viewfinder"></i> Student Submissions</a></li>
             </ul>
         </nav>
         <div class="sidebar-footer">
@@ -546,14 +594,7 @@
         </div>
     </div>
 </div>
-<!-- Modal for full submission view -->
-<div id="submissionModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3 id="modalTitle">Full Submission</h3>
-        <div id="modalBody" class="modal-body"></div>
-    </div>
-</div>
+
 <script>
     // --------------------------------------------------------------
     // MODULE DATA extracted from the provided PDF (Midterm)
@@ -818,10 +859,6 @@
             window.currentModule = 3;
             renderActivitiesPage(3);
         }
-        else if (currentView === 'submissions') {
-        renderSubmissionsPage();
-        return;
-    }
 
     }
 
@@ -866,11 +903,10 @@
     const module4ActivitiesNav = document.getElementById('module4ActivitiesNav');
     const module5Nav = document.getElementById('module5Nav');
     const module5ActivitiesNav = document.getElementById('module5ActivitiesNav');
-    const submissionsNav = document.getElementById('submissionsNav');
     
 
     function setActiveNav(active) {
-        [module1Nav, module1ActivitiesNav, midtermNav, activitiesNav, module3Nav, module3ActivitiesNav, module4Nav, module4ActivitiesNav, module5Nav, module5ActivitiesNav, submissionsNav].forEach(nav => nav.classList.remove('active'));
+        [module1Nav, module1ActivitiesNav, midtermNav, activitiesNav, module3Nav, module3ActivitiesNav, module4Nav, module4ActivitiesNav, module5Nav, module5ActivitiesNav].forEach(nav => nav.classList.remove('active'));
         active.classList.add('active');
     }
 
@@ -944,13 +980,6 @@
         currentModuleData = null;
         render();
     });
-    submissionsNav.addEventListener('click', (e) => {
-    e.preventDefault();
-    setActiveNav(submissionsNav);
-    currentView = 'submissions';
-    currentModuleData = null;
-    renderSubmissionsPage();
-    });
     // ---------- ACTIVITIES DATA (5 activities) ----------
 const lessonData = [
 {
@@ -999,25 +1028,32 @@ const lessonData2 = [
   title: "Module 2 - Lesson 1: The Emergence of Post-9/11 Literature",
   components: [
     {
-      category: "Activity 1",
-      title: "Think–Pair–Share",
-      objective: "Identify and compare personal responses to tragic events with a partner.",
-      instructions: "1. Think about how people usually respond to tragic or life-changing events.\n2. Write down at least 2–3 ideas or examples in your notebook.\n3. Pair up with a classmate and share your responses.\n4. Discuss similarities and differences in your answers.\n5. Be ready to share one key idea with the class.",
-      output: "Completed concept map + short reading notes"
+      category: "Activity",
+      title: "Timeline of Post-9/11 Literature",
+      objective: "To identify major events and themes that influenced the emergence of Post-9/11 literature.",
+      instructions: "Create a short timeline showing at least five important events or literary developments connected to Post-9/11 literature. Include a one to two sentence explanation for each entry. Focus on how literature changed after the September 11 attacks. Submit your answers through the Google Form provided by the instructor.",
+      output: "Submit via Google Form"
     },
     {
-      category: "Activity 2",
-      title: "Concept Mapping",
-      objective: "Visually map key themes (e.g., fear, grief, resilience) connected to the 9/11 attacks.",
-      instructions: "1. On a sheet of paper, write “September 11 Attacks” in the center.\n2. Draw branches connecting to different themes (e.g., fear, grief, unity, loss, resilience).\n3. Add at least 3–5 related ideas or examples for each theme.\n4. Use colors, symbols, or drawings to organize your map.\n5. Present your concept map briefly to the class.",
-      output: "Quiz answers submitted via LMS"
+      category: "Assignment",
+      title: "Reflection on the Rise of Post-9/11 Literature",
+      objective: "To analyze how historical events influence literary themes and writing styles.",
+      instructions: "Write a 300–500 word reflection discussing how the events of 9/11 affected writers and literary works. Mention at least one example of a literary work or theme discussed in the lesson. Submit your work through the Google Form.",
+      output: "Submit via Google Form"
     },
     {
-      category: "Activity 3",
-      title: "Short Reading Analysis",
-      objective: "Recognize and name emotions expressed in a post-9/11 literary excerpt.",
-      instructions: "1. Read the given excerpt carefully.\n2. Identify the emotions expressed in the text.\n3. Highlight or underline words/phrases that show these emotions.\n4. Answer the guide questions provided by your teacher.\n5. Share your responses in a short class discussion.",
-      output: "Submitted answers"
+      category: "Quiz",
+      title: "Essay Quiz on Post-9/11 Literature",
+      objective: "To assess understanding of the characteristics and significance of Post-9/11 literature.",
+      instructions: "Why did the events of September 11, 2001 greatly influence modern literature? Discuss how writers responded to the event through themes, characters, or storytelling styles.\nSubmit your answer through the Google Form.",
+      output: "Submit via Google Form"
+    },
+    {
+      category: "Forum Discussion",
+      title: "Literature After Crisis",
+      objective: "To encourage critical thinking and personal insight about literature during times of crisis.",
+      instructions: "Write a 150–250 word response to the question below. Then reply to at least one classmate with a meaningful response containing at least 50 words.\nDiscussion Question:\nDo you think literature becomes more meaningful during times of tragedy or crisis? Why or why not?",
+      output: "Submit via Google Form"
     }
   ]
 },
@@ -1026,25 +1062,32 @@ const lessonData2 = [
     title: "Module 2 - Lesson 2: Trauma and Memory in Literature",
     components: [
     {
-        category: "Activity 1",
-        title: "Close Reading",
-        objective: "Identify and describe how a character expresses trauma and strong emotions in a given excerpt.",
-        instructions: "1. Read the assigned excerpt from Extremely Loud & Incredibly Close carefully.\n2. Highlight lines that show strong emotions or trauma.\n3. Take note of how the character expresses feelings.\n4. Answer the guide questions about tone, mood, and emotions.\n5. Discuss your answers with a partner or group.",
-        output: "Submit via lms."
+        category: "Activity",
+        title: "Identifying Themes of Trauma and Memory",
+        objective: "To recognize how trauma and memory are represented in literary texts.",
+        instructions: "Read the selected excerpt provided in the module. Identify three examples that show trauma or memory affecting a character. Explain each example briefly in two to three sentences. Submit your answers through the Google Form.",
+        output: "Submit via Google Form"
     },
     {
-        category: "Activity 2",
-        title: "Memory Timeline",
-        objective: "Sequence at least five remembered events from the story and explain how memory shapes their order.",
-        instructions: "1. Create a timeline based on events in the story.\n2. Arrange events in the order they are remembered by the character.\n3. Include at least 5 key moments.\n4. Add short descriptions for each event.\n5. Present your timeline and explain how memory is shown in the story.",
-        output: "Submit via lms"
+        category: "Assignment",
+        title: "Personal Reflection on Memory and Storytelling",
+        objective: "To connect personal understanding of memory with literary themes.",
+        instructions: "Write a 300–500 word essay explaining how memories can shape a person’s identity and actions. Relate your discussion to a literary character or story discussed in class. Submit your work through the Google Form.",
+        output: "Submit via Google Form"
     },
     {
-        category: "Activity 3",
-        title: "Group Discussion",
-        objective: "Analyze how trauma affects memory, using text-based examples to support conclusions.",
-        instructions: "1. Form groups of 4–5 students.\n2. Discuss how trauma affects the way people remember events.\n3. Use examples from the text to support your ideas.\n4. Assign one member to take notes.\n5. Share your group’s conclusions with the class.",
-        output: "Submit via lms."
+        category: "Quiz",
+        title: "Essay Quiz on Trauma and Memory",
+        objective: "To evaluate understanding of trauma and memory as literary themes.",
+        instructions: "Answer the question below in paragraph form using 150–250 words.\nQuestion:\nHow do authors use memory and trauma to create emotional impact in literature? Provide at least one example from the lesson.",
+        output: "Submit via Google Form"
+    },
+    {
+        category: "Forum Discussion",
+        title: "The Lasting Effects of Trauma",
+        objective: "To promote discussion about emotional experiences in literature.",
+        instructions: "Write a 150–250 word response to the question below. Then reply to at least one classmate with a meaningful response containing at least 50 words.\nDiscussion Question:\nCan literature help people understand trauma better? Explain your answer.",
+        output: "Submit via Google Form"
     }
   ]
 },
@@ -1053,25 +1096,32 @@ const lessonData2 = [
     title: "Module 2 - Lesson 3: Fear, Security, and the Global Landscape",
     components: [
     {
-        category: "Activity 1",
-        title: "Debate",
-        objective: "Construct and defend at least three arguments for or against the statement “Security is more important than freedom.”",
-        instructions: "1. The class will be divided into two groups: Agree and Disagree.\n2. The topic is: “Security is more important than freedom.”\n3. Work with your group to prepare at least 3 arguments.\n4. Choose a speaker to present your ideas.\n5. Listen respectfully and respond to opposing arguments during the debate.",
-        output: "Submit via lms."
+        category: "Activity",
+        title: "Analyzing Fear and Security in Literature",
+        objective: "To examine how fear and security influence characters and societies in literary works.",
+        instructions: "Choose one literary text discussed in the lesson. Identify two situations where fear or security influenced the decisions of characters. Explain each situation briefly. Submit your answers through the Google Form.",
+        output: "Submit via Google Form"
     },
     {
-        category: "Activity 2",
-        title: "Case Study Analysis",
-        objective: "Identify themes of fear, security, or global conflict in a given excerpt from Saturday.",
-        instructions: "1. Read the provided excerpt from Saturday.\n2. Identify themes related to fear, security, or global conflict.\n3. Answer the guide questions provided.\n4. Write your answers clearly and concisely.\n5. Participate in a short class discussion.",
-        output: "Submit via lms."
+        category: "Assignment",
+        title: "Global Issues and Literary Responses",
+        objective: "To analyze the connection between global events and literary themes.",
+        instructions: "Write a 300–500 word essay discussing how literature reflects issues related to fear, war, security, or globalization after 9/11. Include examples from the lesson whenever possible. Submit your work through the Google Form.",
+        output: "Submit via Google Form"
     },
     {
-        category: "Activity 3",
-        title: "Role Play",
-        objective: "Demonstrate how different social roles influence perspectives on surveillance and public safety through a short role-play.",
-        instructions: "1. Form groups and assign roles (citizens, government officials, activists).\n2. Discuss a situation involving surveillance and public safety.\n3. Prepare a short role-play presentation (3–5 minutes).\n4. Present your group’s perspective to the class.\n5. Reflect on how different roles influence opinions.",
-        output: "Submit via lms."
+        category: "Quiz",
+        title: "Essay Quiz on Fear and Security",
+        objective: "To assess understanding of how literature reflects social and political issues.",
+        instructions: "Answer the question below in paragraph form using 150–250 words.\nQuestion:\nHow does literature show the effects of fear and security measures on individuals and society after major global events?",
+        output: "Submit via Google Form"
+    },
+    {
+        category: "Forum Discussion",
+        title: "Fear in Modern Society",
+        objective: "To encourage students to relate literary themes to real-world experiences.",
+        instructions: "Write a 150–250 word response to the question below. Then reply to at least one classmate with a meaningful response containing at least 50 words.\nDiscussion Question:\nDo you think fear changes the way people treat others during times of crisis? Why or why not?",
+        output: "Submit via Google Form"
     }
 ]
 },
@@ -1080,25 +1130,32 @@ const lessonData2 = [
     title: "Module 2 - Lesson 4: Changing Narrative Styles and Literary Approaches",
     components: [
     {
-        category: "Activity 1",
-        title: "Comparative Reading",
-        objective: "Compare and contrast at least three differences in style, tone, and themes between postmodern and post-9/11 texts.",
-        instructions: "1. Read the two provided excerpts (postmodern and post-9/11 texts).\n2. Compare their style, tone, and themes.\n3. Fill out a comparison chart.\n4. Identify at least 3 differences.\n5. Share your findings with the class.",
-        output: "Submit via lms."
+        category: "Activity",
+        title: "Exploring Modern Narrative Techniques",
+        objective: "To identify new storytelling techniques used in Post-9/11 literature.",
+        instructions: "List and explain at least three narrative techniques discussed in the lesson, such as fragmented storytelling, multiple perspectives, or nonlinear narratives. Provide a short example for each. Submit your answers through the Google Form.",
+        output: "Submit via Google Form"
     },
     {
-        category: "Activity 2",
-        title: "Style Identification",
-        objective: "Identify the narrative style (e.g., realism, emotional tone) used in an excerpt from Falling Man.",
-        instructions: "1. Read the excerpt from Falling Man carefully.\n2. Identify the narrative style used in the text.\n3. Highlight key features (e.g., realism, emotional tone).\n4. Answer the guide questions.\n5. Discuss your answers with a partner.",
-        output: "Submit via lms."
+        category: "Assignment",
+        title: "Comparing Traditional and Modern Narratives",
+        objective: "To compare literary styles before and after 9/11.",
+        instructions: "Write a 300–500 word comparison essay discussing how narrative styles changed in Post-9/11 literature compared to traditional literary approaches. Submit your work through the Google Form.",
+        output: "Submit via Google Form"
     },
     {
-        category: "Activity 3",
-        title: "Writing Exercise",
-        objective: "Rewrite a short text using a realistic and emotional tone with clear, sincere, descriptive details.",
-        instructions: "1. Choose a short text provided by your teacher.\n2. Rewrite the text using a more realistic and emotional tone.\n3. Focus on clarity, sincerity, and descriptive details.\n4. Write at least one paragraph.\n5. Share your rewritten version with the class.",
-        output: "Submit via lms."
+        category: "Quiz",
+        title: "Essay Quiz on Narrative Styles",
+        objective: "To evaluate understanding of modern literary techniques.",
+        instructions: "Answer the question below in paragraph form using 150–250 words.\nQuestion:\nWhy do you think many Post-9/11 authors experimented with new narrative styles and storytelling techniques?",
+        output: "Submit via Google Form"
+    },
+    {
+        category: "Forum Discussion",
+        title: "The Power of Storytelling Techniques",
+        objective: "To develop appreciation for literary creativity and innovation.",
+        instructions: "Write a 150–250 word response to the question below. Then reply to at least one classmate with a meaningful response containing at least 50 words.\nDiscussion Question:\nWhich storytelling style do you find more effective: traditional linear storytelling or modern fragmented narratives? Explain your answer.",
+        output: "Submit via Google Form"
     }
     ]
 },
@@ -1107,25 +1164,32 @@ const lessonData2 = [
     title: "Module 2 - Lesson 5: Expanding Perspectives and Literature for Younger Readers",
     components: [
     {
-        category: "Activity 1",
-        title: "Global Perspective Analysis",
-        objective: "Compare common and different themes across literary excerpts from various cultural perspectives.",
-        instructions: "1. Read the assigned excerpts from different cultural perspectives.\n2. Identify common and different themes.\n3. Complete a comparison chart.\n4. Write a short summary of your observations.\n5. Share your answers in a class discussion.",
-        output: "Submit via lms." 
+        category: "Activity",
+        title: "Understanding Diverse Perspectives",
+        objective: "To recognize the importance of diverse voices in Post-9/11 literature.",
+        instructions: "Identify two literary works or stories from the lesson that present different cultural, social, or age perspectives. Briefly explain how these perspectives help readers understand the effects of global events. Submit your answers through the Google Form.",
+        output: "Submit via Google Form." 
     },
     {
-        category: "Activity 2",
-        title: "Children’s Book Review",
-        objective: "Analyze how This Very Tree presents a difficult topic (9/11) to young readers and identify its main theme of resilience.",
-        instructions: "1. Read This Very Tree: A Story of 9/11, Resilience, and Regrowth.\n2. Identify the main theme and message of the story.\n3. Analyze how the book presents a difficult topic to young readers.\n4. Answer the guide questions.\n5. Share your thoughts with the class.",
-        output: "Submit via lms."
+        category: "Assignment",
+        title: "Literature for Young Readers After 9/11",
+        objective: "To analyze how sensitive topics are presented to younger audiences.",
+        instructions: "Write a 300–500 word essay discussing how authors explain difficult topics such as fear, loss, and conflict to younger readers. Include examples from the lesson if possible. Submit your work through the Google Form.",
+        output: "Submit via Google Form."
     },
     {
-        category: "Activity 3",
-        title: "Creative Task",
-        objective: "Create a short illustrated story with a clear beginning, middle, and end that delivers a hopeful message about resilience.",
-        instructions: "1. Create a short illustrated story about resilience.\n2. Your story should include a clear beginning, middle, and end.\n3. Use simple language and meaningful illustrations.\n4. Make sure your story delivers a hopeful message.\n5. Present your work to the class.",
-        output: "Submit via lms." 
+        category: "Quiz",
+        title: "Essay Quiz on Expanding Perspectives",
+        objective: "To assess understanding of diverse perspectives in literature.",
+        instructions: "Answer the question below in paragraph form using 150–250 words.\nQuestion:\nWhy is it important for literature to include different cultural perspectives and younger readers’ experiences when discussing global events?",
+        output: "Submit via Google Form." 
+    },
+    {
+        category: "Forum Discussion",
+        title: "Literature and Empathy",
+        objective: "To encourage students to reflect on empathy and understanding through literature.",
+        instructions: "Write a 150–250 word response to the question below. Then reply to at least one classmate with a meaningful response containing at least 50 words.\nDiscussion Question:\nHow can literature help readers understand experiences that are different from their own?",
+        output: "Submit via Google Form"
     }
     ]
 }];
@@ -1136,18 +1200,32 @@ const lessonData3 = [
   title: "Module 3 - Lesson 1: The Evolution and Power of the Novel in the 21st Century",
   components: [
     {
-      category: "Assessment",
-      title: "Short Essay (200–300 words)",
-      objective: "Explain how modern novels reflect the complexities of real-life experiences in a concise essay.",
-      instructions: "Prompt: “How do modern novels reflect the complexities of real-life experiences?”",
-      output: "Submit via lms."
+        category: "Activity",
+        title: "Mapping the Modern Novel",
+        objective: "To identify the characteristics and themes of 21st-century novels.",
+        instructions: "Create a concept map showing at least five characteristics of modern novels in the 21st century. Include short explanations for each characteristic and how they reflect contemporary society. Submit your answers through the Google Form provided by the instructor.",
+        output: "Submit via Google Form." 
     },
     {
-      category: "Assignment",
-      title: "Reflection",
-      objective: "Reflect on how a specific novel represents real-world issues using at least one textual example.",
-      instructions: "Write a 300-word reflection on how a novel you have read represents real-world issues.",
-      output: "Submit via lms."
+        category: "Assignment",
+        title: "The Influence of Modern Novels",
+        objective: "To analyze the impact of 21st-century novels on readers and society.",
+        instructions: "Write a 300–500 word essay discussing how modern novels reflect current social, cultural, or technological issues. Include at least one example of a contemporary novel or theme discussed in class. Submit your work through the Google Form.",
+        output: "Submit via Google Form."
+    },
+    {
+        category: "Quiz",
+        title: "Essay Quiz on the Modern Novel",
+        objective: "To assess understanding of the evolution of novels in the 21st century.",
+        instructions: "Answer the question below in paragraph form using 150–250 words.\nQuestion:\nHow have 21st-century novels changed compared to traditional novels? Discuss themes, writing styles, or topics that make modern novels unique.",
+        output: "Submit via Google Form." 
+    },
+    {
+        category: "Forum Discussion",
+        title: "The Relevance of Novels Today",
+        objective: "To encourage students to reflect on the importance of novels in modern society.",
+        instructions: "Write a 150–250 word response to the question below. Then reply to at least one classmate with a meaningful response containing at least 50 words.\nDiscussion Question:\nDo you think novels are still powerful and relevant in the digital age? Why or why not?",
+        output: "Submit via Google Form"
     }
   ]
 },
@@ -1156,18 +1234,32 @@ const lessonData3 = [
     title: "Module 3 - Lesson 2: Cultural and Postcolonial Perspectives",
     components: [
     {
-        category: "Assessment",
-        title: "Analytical Paragraph (150–200 words)",
-        objective: "Explain how perspective influences the meaning of a story in a clear, focused paragraph.",
-        instructions: "Prompt: “Explain how perspective influences the meaning of a story.”",
-        output: "Submit via lms."
+        category: "Activity",
+        title: "Identifying Authorial Voices",
+        objective: "To recognize the unique perspectives and writing styles of contemporary authors.",
+        instructions: "Choose two contemporary authors discussed in the lesson. Identify one unique writing style, theme, or perspective from each author and explain it briefly in two to three sentences. Submit your answers through the Google Form.",
+        output: "Submit via Google Form." 
     },
     {
         category: "Assignment",
-        title: "300–400 word narrative from two perspectives",
-        objective: "Write a short narrative showing how the same event changes meaning when told from two different perspectives.",
-        instructions: "Write a short narrative (300–400 words) from two different perspectives about the same event.",
-        output: "Submit via lms"
+        title: "Understanding Contemporary Voices",
+        objective: "To analyze how contemporary authors express social and personal issues through literature.",
+        instructions: "Write a 300–500 word essay discussing how contemporary authors use their works to express different perspectives about society, culture, identity, or human experiences. Include examples from the lesson whenever possible. Submit your work through the Google Form.",
+        output: "Submit via Google Form."
+    },
+    {
+        category: "Quiz",
+        title: "Essay Quiz on Contemporary Authors",
+        objective: "To evaluate understanding of the importance of diverse literary voices.",
+        instructions: "Answer the question below in paragraph form using 150–250 words.\nQuestion:\nWhy is it important to study different voices and perspectives in contemporary literature? Explain your answer using examples from the lesson.",
+        output: "Submit via Google Form." 
+    },
+    {
+        category: "Forum Discussion",
+        title: "Literature and Representation",
+        objective: "To encourage discussion about diversity and representation in literature.",
+        instructions: "Write a 150–250 word response to the question below. Then reply to at least one classmate with a meaningful response containing at least 50 words.\nDiscussion Question:\nHow do contemporary authors help readers better understand people from different backgrounds or experiences?",
+        output: "Submit via Google Form"
     }
   ]
 },
@@ -1176,19 +1268,33 @@ const lessonData3 = [
     title: "Module 3 - Lesson 3: Digital Media and Modern Narratives",
     components: [
     {
-        category: "Assessment",
-        title: "Reflection Paragraph (150–200 words)",
-        objective: "Explain why short stories are powerful despite their limited length.",
-        instructions: "Prompt: “Why are short stories powerful despite their length?”",
-        output: "Submit via lms."
+        category: "Activity",
+        title: "Elements of a Modern Short Story",
+        objective: "To identify the important elements of short stories in modern literature.",
+        instructions: "Read the short story provided in the module. Identify the setting, characters, conflict, climax, and theme of the story. Explain each element briefly. Submit your answers through the Google Form.",
+        output: "Submit via Google Form." 
     },
     {
         category: "Assignment",
-        title: "300–500 word short story",
-        objective: "Write a short story based on a meaningful life experience, focusing on clarity and emotional impact.",
-        instructions: "Create your own short story (300–500 words) focusing on a meaningful life experience.",
-        output: "Submit via lms"
+        title: "Why Short Stories Matter",
+        objective: "To analyze the significance of short stories in modern literature.",
+        instructions: "Write a 300–500 word essay discussing why short stories remain important in today’s fast-paced world. Include examples of themes or storytelling techniques commonly used in modern short stories. Submit your work through the Google Form.",
+        output: "Submit via Google Form."
     },
+    {
+        category: "Quiz",
+        title: "Essay Quiz on Short Stories",
+        objective: "To assess understanding of the role and effectiveness of short stories.",
+        instructions: "Answer the question below in paragraph form using 150–250 words.\nQuestion:\nWhat makes short stories effective in delivering emotions, lessons, or messages despite their short length?",
+        output: "Submit via Google Form." 
+    },
+    {
+        category: "Forum Discussion",
+        title: "The Power of Short Fiction",
+        objective: "To encourage appreciation for short stories as a literary form.",
+        instructions: "Write a 150–250 word response to the question below. Then reply to at least one classmate with a meaningful response containing at least 50 words.\nDiscussion Question:\nDo you prefer short stories or novels? Explain which one you find more engaging and why.",
+        output: "Submit via Google Form"
+    }
   ]
 }
 ];
